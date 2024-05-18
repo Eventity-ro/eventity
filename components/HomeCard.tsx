@@ -1,19 +1,21 @@
 import Image from 'next/image'
-import { FaHeart, FaRegHeart, FaStar } from 'react-icons/fa';
+import { FaHeart, FaRegHeart, FaStar, FaEuroSign } from 'react-icons/fa';
 import {useState} from "react";
 
 interface HomeCardProps {
     title: string;
-    description: string;
+    location: string;
+    startingPrice: number;
     image: any;
     rating: number;
+    capacity?: string;
 }
 
-export default function HomeCard({ title, description, image, rating }: HomeCardProps) {
+export default function HomeCard({ title, location, startingPrice, image, rating, capacity }: HomeCardProps) {
     const [liked, setLiked] = useState(false);
 
     return (
-        <div className="w-full border rounded-lg overflow-hidden relative">
+        <div className="w-full  rounded-lg overflow-hidden relative">
             <div className="relative">
                 <Image src={image} alt="Example Image"/>
                 <div
@@ -29,7 +31,12 @@ export default function HomeCard({ title, description, image, rating }: HomeCard
             </div>
             <div className="flex flex-col justify-center p-2 flex-grow">
                 <h3 className="text-lg font-bold mb-1">{title}</h3>
-                <p>{description}</p>
+                <p>Locatie: {location}</p>
+                <p className="font-bold flex items-center">De la: {startingPrice} <FaEuroSign/> </p>
+                {
+                    capacity &&
+                    <p>Capacitate: {capacity} persoane</p>
+                }
             </div>
         </div>
     )

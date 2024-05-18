@@ -1,35 +1,34 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import type {Metadata} from "next";
+import {Inter} from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import Home from "@/app/page";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({subsets: ["latin"]});
 
 export const metadata: Metadata = {
-  title: "Eventity",
-  description: "Created by Eventity team",
+    title: "Eventity",
+    description: "Created by Eventity team",
 };
 
 export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
+                                       children,
+                                   }: Readonly<{
+    children: React.ReactNode;
 }>) {
-  return (
-    <html lang="en">
-      <body className={inter.className}>
+    return (
+        <html lang="en">
+        <body className={inter.className}>
         <header>
-          <Header/>
+            <Header/>
         </header>
-      <main>
-          {children}
-      </main>
-      <footer>
-        <Footer/>
-      </footer>
-      </body>
-    </html>
-  );
+        <main>
+            {children}
+        </main>
+        <footer>
+            <Footer/>
+        </footer>
+        </body>
+        </html>
+    );
 }
