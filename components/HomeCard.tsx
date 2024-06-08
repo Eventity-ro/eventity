@@ -43,7 +43,7 @@ export default function HomeCard({ title, location, startingPrice, imageList, ra
     return (
         <div className="w-full  rounded-lg overflow-hidden relative group">
                 <div className="relative">
-                    <Link href="/client">
+                    <Link href={"/client"}>
                         <Image src={imageList[currentImage]} alt="Example Image"/>
                     </Link>
                     <div
