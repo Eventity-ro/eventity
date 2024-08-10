@@ -1,3 +1,5 @@
+'use client'
+
 import Image from 'next/image'
 import {FaHeart, FaRegHeart, FaStar, FaEuroSign, FaAngleRight , FaAngleLeft } from 'react-icons/fa';
 import {useState} from "react";
@@ -43,7 +45,7 @@ export default function HomeCard({ title, location, startingPrice, imageList, ra
     return (
         <div className="w-full  rounded-lg overflow-hidden relative group">
                 <div className="relative">
-                    <Link href={"/client"}>
+                    <Link href={{pathname: "/client", query: {title: title, rating: rating, location: location}}}>
                         <Image src={imageList[currentImage]} alt="Example Image"/>
                     </Link>
                     <div

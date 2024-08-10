@@ -3,12 +3,14 @@ import AppButton from "@/components/buttons/AppButton";
 import SearchBar from './SearchBar';
 import ProfileButton from "@/components/buttons/ProfileButton";
 import FilterButton from "@/components/buttons/FilterButton";
+import logo from "@/images/Logo.svg"
+import Image from "next/image";
 
 export default function Header() {
     return (
         <div className="bg-white flex-col items-center">
             <div className="flex justify-between items-center gap-[20%] pt-4 pb-2 px-12">
-                <span className="text-xl font-bold">Logo</span>
+                <Image src={logo} alt="logo" width={50} height={50} />
                 <SearchBar/>
                 <div className="flex items-center gap-2">
                     <AppButton title="Devino client"/>

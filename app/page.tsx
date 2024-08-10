@@ -1,8 +1,6 @@
-'use client'
-
 import HomeCard from "@/components/HomeCard";
-import exampleImage1 from "../images/Example1.jpg"
-import exampleImage2 from "../images/Example2.jpg"
+import exampleImage1 from "@/images/Example1.jpg"
+import exampleImage2 from "@/images/Example2.jpg"
 
 export default function Home() {
     const cards = [
