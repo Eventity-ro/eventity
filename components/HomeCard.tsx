@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import {FaHeart, FaRegHeart, FaStar, FaEuroSign, FaAngleRight , FaAngleLeft } from 'react-icons/fa';
-import {useState} from "react";
+import {useState, Suspense } from "react";
 import Link from 'next/link';
 
 interface HomeCardProps {
@@ -45,9 +45,11 @@ export default function HomeCard({ title, location, startingPrice, imageList, ra
     return (
         <div className="w-full  rounded-lg overflow-hidden relative group">
                 <div className="relative">
-                    <Link href={{pathname: "/client", query: {title: title, rating: rating, location: location}}}>
-                        <Image src={imageList[currentImage]} alt="Example Image"/>
-                    </Link>
+                    <Suspense>
+                        <Link href={{pathname: "/client", query: {title: title, rating: rating, location: location}}}>
+                            <Image src={imageList[currentImage]} alt="Example Image"/>
+                        </Link>
+                    </Suspense>
                     <div
                         className="absolute top-5 -left-1 bg-white text-gray-700 p-2 flex items-center h-4 rounded border">
                         <FaStar className="mr-1"/>
