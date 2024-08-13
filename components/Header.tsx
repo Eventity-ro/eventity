@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import AppButton from "@/components/buttons/AppButton";
 import SearchBar from './SearchBar';
