@@ -1,5 +1,4 @@
 import type {Metadata} from "next";
-import "./globals.css";
 
 export const metadata: Metadata = {
     title: "Eventity",
@@ -14,9 +13,7 @@ export default function RootLayout({
     return (
         <html lang="en">
         <body>
-        <main>
             {children}
-        </main>
         </body>
         </html>
     );

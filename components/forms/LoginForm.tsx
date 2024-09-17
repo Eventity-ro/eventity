@@ -22,7 +22,7 @@ const LoginForm: React.FC = () => {
 
     return (
         <form className="bg-white rounded pt-6 pb-8 mb-4" onSubmit={handleSubmit}>
-            <div className="mb-2 text-neutral-700 text-2xl font-semibold font-['Inter']">Intra in cont</div>
+            <p className="mb-2 text-neutral-700 text-2xl font-semibold font-['Inter']">Intra in cont</p>
             <FormTextInput
                 label="E-mail"
                 type="email"
