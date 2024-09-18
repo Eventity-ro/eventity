@@ -1,10 +1,12 @@
 "use client"
 
 import HomeCard from "@/components/HomeCard";
-import exampleImage from "../images/Example1.jpg"
+import exampleImage1 from "@/images/Example1.jpg"
+import exampleImage2 from "@/images/Example2.jpg"
 import Toolbar from "@/components/Toolbar";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+
 
 export default function Home() {
     const cards = [
@@ -12,7 +14,7 @@ export default function Home() {
             title: "Example1",
             location: "Bucuresti",
             startingPrice: 60,
-            image: exampleImage,
+            imageList: [exampleImage1, exampleImage2, exampleImage1, exampleImage2, exampleImage1, exampleImage1, exampleImage1, exampleImage1, exampleImage1, exampleImage1, exampleImage1, exampleImage1],
             rating: 5,
             capacity: "100-200"
         },
@@ -20,28 +22,28 @@ export default function Home() {
             title: "Example2",
             location: "Bucuresti",
             startingPrice: 50,
-            image: exampleImage,
+            imageList: [exampleImage1, exampleImage2],
             rating: 4.5
         },
         {
             title: "Example3",
             location: "Bucuresti",
             startingPrice: 30,
-            image: exampleImage,
+            imageList: [exampleImage1, exampleImage2],
             rating: 3.5
         },
         {
             title: "Example4",
             location: "Bucuresti",
             startingPrice: 20,
-            image: exampleImage,
+            imageList: [exampleImage1, exampleImage2],
             rating: 4.9
         },
         {
             title: "Example5",
             location: "Bucuresti",
             startingPrice: 10,
-            image: exampleImage,
+            imageList: [exampleImage1, exampleImage2],
             rating: 5
         }
     ]
@@ -57,7 +59,7 @@ export default function Home() {
               {
                   cards.map((card, index) => (
                       <HomeCard key={index} title={card.title} location={card.location}
-                                startingPrice={card.startingPrice} image={card.image} rating={card.rating}
+                                startingPrice={card.startingPrice} imageList={card.imageList} rating={card.rating}
                                 capacity={card?.capacity}/>
                   ))
               }
