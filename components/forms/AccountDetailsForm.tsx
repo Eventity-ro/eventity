@@ -27,7 +27,7 @@ const AccountDetailsForm: React.FC = () => {
     };
 
     return (
-        <form className="rounded pt-6 pb-8 mb-4 bg-white" onSubmit={handleSubmit}>
+        <form className="rounded bg-white" onSubmit={handleSubmit}>
             <p className="mb-2 text-neutral-700 text-2xl font-semibold">Detalii cont</p>
             <FormTextInput
                 label="Prenume"
