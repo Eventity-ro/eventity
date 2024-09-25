@@ -3,6 +3,7 @@ import {Inter} from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import Head from "next/head";
 
 const inter = Inter({subsets: ["latin"]});
 
@@ -18,17 +19,21 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-        <body className={inter.className}>
+        <Head>
+            <link rel="icon" type="image/svg+xml" href="/logo.svg"/>
+            <link rel="icon" type="image/png" sizes="32x32" href="/logo.png"/>
+        </Head>
+        <body className={`${inter.className}`}>
         <header>
-            <Header/>
-        </header>
-        <main>
-            {children}
-        </main>
-        <footer>
-            <Footer/>
-        </footer>
-        </body>
+                    <Header/>
+                </header>
+                <main>
+                    {children}
+                </main>
+                <footer>
+                    <Footer/>
+                </footer>
+            </body>
         </html>
     );
 }

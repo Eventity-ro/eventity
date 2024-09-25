@@ -2,7 +2,7 @@ import React from 'react';
 import AppButton from "@/components/buttons/AppButton";
 import SearchBar from './SearchBar';
 import ProfileButton from "@/components/buttons/ProfileButton";
-import logo from "@/images/Logo.svg"
+import logo from "@/images/logo.svg"
 import Image from "next/image";
 
 export default function Header() {
