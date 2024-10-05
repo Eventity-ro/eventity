@@ -27,12 +27,14 @@ const LoginForm: React.FC = () => {
                 label="E-mail"
                 type="email"
                 value={email}
+                edit={true}
                 onChange={handleEmailChange}
             />
             <FormTextInput
                 label="Parolă"
                 type="password"
                 value={password}
+                edit={true}
                 onChange={handlePasswordChange}
             />
             <FormButton label={'Continua'} onClick={() => console.log('Continua')}/>
