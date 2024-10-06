@@ -2,6 +2,8 @@
 
 import React, {useCallback, useState} from 'react';
 import FormTextInput from "@/components/FormTextInput";
+import FormButton from "@/components/FormButton";
+import FormDropdownComponent from "@/components/FormDropdownComponent";
 
 const NewClientForm = () => {
 
@@ -10,6 +12,13 @@ const NewClientForm = () => {
     const [clientEmail, setClientEmail] = useState('venus@contact.com');
     const [clientInstagram, setClientInstagram] = useState('@restaurantvenus');
     const [clientFacebook, setClientFacebook] = useState('restaurantvenus');
+
+    const options = [
+        'Sala nunti',
+        'Fotograf',
+        'DJ',
+        'Barman',
+    ];
 
     const handleClientNameChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         setClientName(e.target.value);
@@ -37,18 +46,7 @@ const NewClientForm = () => {
 
             {/* Service selection */}
             <div className="mb-2">
-                <select
-                    id="service"
-                    name="service"
-                    className="w-full h-12 py-2 px-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                >
-                    <option value="" disabled selected hidden>
-                        Alege serviciul oferit
-                    </option>
-                    <option>Sala nunti</option>
-                    <option>Formatie</option>
-                    <option>Catering</option>
-                </select>
+                <FormDropdownComponent label='Alege serviciul oferit' options={options}/>
             </div>
 
             {/* Client Information */}
@@ -110,15 +108,10 @@ const NewClientForm = () => {
             </div>
 
             {/* Submit Button */}
-            <div className="mt-6">
-                <div className="w-1/2"/>
-                <button
-                    type="button"
-                    className="w-1/2 h-12 px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700"
-                    style={{backgroundColor: '#5C8171'}}
-                >
-                    Următorul pas
-                </button>
+            <div className="mt-6 flex justify-end">
+                <div className="w-1/2 pl-2">
+                    <FormButton label='Urmatorul pas' darkMode={true} onClick={() => console.log('Urmatorul pas')}/>
+                </div>
             </div>
         </div>
     );

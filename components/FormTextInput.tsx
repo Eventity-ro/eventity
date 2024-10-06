@@ -5,7 +5,7 @@ import React, { ChangeEvent } from 'react';
 interface FormTextInputProps {
     label: string;
     type: string;
-    value: string;
+    value: string | number;
     edit: boolean;
     onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
