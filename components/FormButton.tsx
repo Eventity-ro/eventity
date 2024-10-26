@@ -4,11 +4,11 @@ import React from 'react';
 
 interface FormButtonProps {
     label: string;
-    darkMode: boolean;
+    darkMode?: boolean;
     onClick: () => void;
 }
 
-const FormButton: React.FC<FormButtonProps> = ({ label, onClick, darkMode}) => {
+const FormButton: React.FC<FormButtonProps> = ({ label, onClick, darkMode = false}) => {
     return (
         <button
             type="submit"

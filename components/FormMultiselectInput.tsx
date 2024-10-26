@@ -2,6 +2,8 @@
 
 import React, { useState, useCallback } from 'react';
 
+
+//Limita de 25 de caractere pentru un input
 const FormMultiselectInput = () => {
     const [services, setServices] = useState<string[]>(['Ospătari', 'Parcare privată', 'Cocktail bar', 'Bucătărie proprie', 'Wi-Fi']);
     const [newService, setNewService] = useState<string>('');

@@ -9,6 +9,7 @@ interface GeneralDescriptionProps {
     setTextArea: (e: string) => void;
 }
 
+//Fara scroll
 const FormTextAreaInput: React.FC<GeneralDescriptionProps> = ({ label, maxLength, textArea, setTextArea }) => {
 
     const handleDescriptionChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
