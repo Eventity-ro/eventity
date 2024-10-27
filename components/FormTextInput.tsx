@@ -5,14 +5,14 @@ import React, { ChangeEvent } from 'react';
 interface FormTextInputProps {
     label: string;
     type: string;
-    value: string;
-    edit: boolean;
+    value: string | number;
+    edit?: boolean;
     onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-const FormTextInput: React.FC<FormTextInputProps> = ({ label, type, value, onChange, edit }) => {
+const FormTextInput: React.FC<FormTextInputProps> = ({ label, type, value, onChange, edit = true }) => {
     return (
-        <div className="w-full h-16 px-2 py-2 bg-white rounded-lg border border-neutral-300 flex-col justify-center mb-2">
+        <div className="w-full h-16 px-2 py-1 bg-white rounded-lg border border-neutral-300 flex-col justify-center">
             <div className="self-stretch h-9 pr-16 flex-col justify-start items-start flex-1">
                 <label className="text-gray-400 text-xs font-normal">{label}</label>
                 <input

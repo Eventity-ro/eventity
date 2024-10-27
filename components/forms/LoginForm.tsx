@@ -22,22 +22,26 @@ const LoginForm: React.FC = () => {
 
     return (
         <form className="rounded pt-6 pb-8 mb-4 bg-white" onSubmit={handleSubmit}>
-            <p className="mb-2 text-neutral-700 text-2xl font-semibold">Intra in cont</p>
-            <FormTextInput
-                label="E-mail"
-                type="email"
-                value={email}
-                onChange={handleEmailChange}
-            />
-            <FormTextInput
-                label="Parolă"
-                type="password"
-                value={password}
-                onChange={handlePasswordChange}
-            />
-            <FormButton label={'Continua'} onClick={() => console.log('Continua')}/>
+            <div className="flex flex-col gap-2">
+                <p className="mb-2 text-neutral-700 text-2xl font-semibold">Intra in cont</p>
+                <FormTextInput
+                    label="E-mail"
+                    type="email"
+                    value={email}
+                    edit={true}
+                    onChange={handleEmailChange}
+                />
+                <FormTextInput
+                    label="Parolă"
+                    type="password"
+                    value={password}
+                    edit={true}
+                    onChange={handlePasswordChange}
+                />
+                <FormButton label={'Continua'} onClick={() => console.log('Continua')}/>
+            </div>
         </form>
-    );
+);
 };
 
 export default LoginForm;
