@@ -51,6 +51,12 @@ const FormMultiselectInput = () => {
                     value={newService}
                     onChange={(e) => setNewService(e.target.value)}
                     placeholder="Adaugă serviciu"
+                    onKeyDown={(e) => {
+                        if (e.key === 'Enter') {
+                            e.preventDefault();
+                            handleAddService();
+                        }
+                    }}
                     className="w-1/2 px-3 py-2 border-none focus:outline-none sm:text-sm text-gray-500"
                 />
                 <button
