@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
     format,
     startOfMonth,
@@ -7,122 +7,160 @@ import {
     endOfWeek,
     eachDayOfInterval,
     isSameMonth,
-    isSameDay
+    isSameDay, isAfter, isBefore
 } from 'date-fns';
+
+interface Location {
+    name: string;
+    color: string;
+}
+
+export interface Event {
+    eventName: string;
+    startDate: Date;
+    endDate: Date;
+    location: Location;
+    reservationName: string;
+    numberOfPeople: number;
+    deposit: number;
+    details?: string;
+    index?: number;
+}
 
 interface CalendarProps {
     year: number;
     month: number; // 0-indexed, January is 0, December is 11
-    unavailableDates: Record<string, Date[]>;
+    unavailableDates: Event[]; // Array of events, each with start date and end date
+    onEventClick: (event: Event) => void; // New prop to handle event click
 }
 
-const MonthCalendar: React.FC<CalendarProps> = ({ year, month, unavailableDates  }) => {
+const MonthCalendar: React.FC<CalendarProps> = ({year, month, unavailableDates,onEventClick}) => {
     const monthStart = startOfMonth(new Date(year, month));
     const monthEnd = endOfMonth(monthStart);
-    const startDate = startOfWeek(monthStart, { weekStartsOn: 1 }); // Week starts on Monday
-    const endDate = endOfWeek(monthEnd, { weekStartsOn: 1 });
+    const startDate = startOfWeek(monthStart, {weekStartsOn: 1}); // Week starts on Monday
+    const endDate = endOfWeek(monthEnd, {weekStartsOn: 1});
 
-    const days = eachDayOfInterval({ start: startDate, end: endDate });
+    const days = eachDayOfInterval({start: startDate, end: endDate});
 
-    // Function to generate random colors
-    const getRandomColor = () => {
-        const letters = '0123456789ABCDEF';
-        let color = '#';
-        for (let i = 0; i < 6; i++) {
-            color += letters[Math.floor(Math.random() * 16)];
-        }
-        return color;
+    const calculateEventsByDay = (days: Date[]) => {
+
+    }
+
+    // Function to check if a date is within an event's range
+    const isDateInRange = (date: Date, event: Event) => {
+        return (
+            isSameDay(date, event.startDate) ||
+            isSameDay(date, event.endDate) ||
+            (isAfter(date, event.startDate) && isBefore(date, event.endDate))
+        );
     };
 
-    // Function to check if a date has an event
-    const getEventForDate = (date: Date): { eventName: string, isStart: boolean, isEnd: boolean, isSingleDay: boolean } | null => {
-        for (const [eventName, eventDates] of Object.entries(unavailableDates)) {
-            const startEvent = eventDates[0];
-            const endEvent = eventDates[eventDates.length - 1];
+    // Function to get all events for a particular date
+    const getEventsForDate = (date: Date): {
+        event: Event;
+        isStart: boolean;
+        isEnd: boolean;
+        isSingleDay: boolean
+    }[] => {
+        return unavailableDates
+            .filter(event => isDateInRange(date, event))
+            .map(event => {
+                const isSingleDay = isSameDay(event.startDate, event.endDate);
+                const isStart = isSameDay(date, event.startDate);
+                const isEnd = isSameDay(date, event.endDate);
+                return {
+                    event,
+                    isStart,
+                    isEnd,
+                    isSingleDay,
+                };
+            });
+    };
 
-            const isSingleDay = eventDates.length === 1 && isSameDay(date, startEvent);
+    // Function to render the event bars for multiple events on a single day
+    const renderEventBars = (events: { event: Event; isStart: boolean; isEnd: boolean; isSingleDay: boolean }[]) => {
+        return events.map((eventInfo, index) => {
+            const {event, isStart, isEnd, isSingleDay} = eventInfo;
+            let positionClasses = '';
+            let borderRadius = '';
 
             if (isSingleDay) {
-                return { eventName, isStart: true, isEnd: true, isSingleDay: true };
+                positionClasses = 'left-3 -right-3';
+                borderRadius = '15px';
+            } else if (isStart) {
+                positionClasses = 'left-3 -right-1';
+                borderRadius = '15px 0 0 15px';
+            } else if (isEnd) {
+                positionClasses = '-left-1 -right-3';
+                borderRadius = '0 15px 15px 0';
+            } else {
+                positionClasses = 'left-0 right-0';
+                borderRadius = '0';
             }
-            if (isSameDay(date, startEvent)) {
-                return { eventName, isStart: true, isEnd: false, isSingleDay: false };
-            }
-            if (isSameDay(date, endEvent)) {
-                return { eventName, isStart: false, isEnd: true, isSingleDay: false };
-            }
-            if (eventDates.some(eventDate => isSameDay(eventDate, date))) {
-                return { eventName, isStart: false, isEnd: false, isSingleDay: false };
-            }
-        }
-        return null;
-    };
 
-    // Function to render the event bar
-    const renderEventBar = (eventInfo: { eventName: string, isStart: boolean, isEnd: boolean, isSingleDay: boolean } | null) => {
-        if (!eventInfo) return null;
-
-        let positionClasses = '';
-        let borderRadius = '';
-
-        if (eventInfo.isSingleDay) {
-            positionClasses = 'left-3 -right-3';
-            borderRadius = '15px';
-        } else if (eventInfo.isStart) {
-            positionClasses = 'left-3 -right-1';
-            borderRadius = '15px 0 0 15px';
-        } else if (eventInfo.isEnd) {
-            positionClasses = '-left-1 -right-3';
-            borderRadius = '0 15px 15px 0';
-        } else {
-            positionClasses = 'left-0 right-0';
-            borderRadius = '0';
-        }
-
-        return (
-            <div
-                className={`absolute bottom-2 ${positionClasses} px-2 py-1 text-white text-xs z-10`}
-                style={{
-                    backgroundColor: eventInfo.eventName === 'Nuntă' ? '#808080' : '#ccc',
-                    borderRadius: borderRadius,
-                }}
-            >
-                {eventInfo.isStart ? eventInfo.eventName : '\u00A0'}
-            </div>
-        );
+            return (
+                <div
+                    key={index}
+                    className={`absolute ${positionClasses} h-5 px-2 py-0.5 z-10`}
+                    style={{
+                        backgroundColor: event.location.color,
+                        borderRadius: borderRadius,
+                        bottom: index == 2 ? '3.5rem' : index == 1 ? '2rem' : '0.5rem',
+                        cursor: 'pointer'
+                    }}
+                    onClick={() => onEventClick(event)}
+                >
+                    <div className="text-white text-xs">
+                        {isStart ? `${event.eventName}` : '\u00A0'}
+                    </div>
+                </div>
+            );
+        });
     };
 
     // Function to render the square itself
-    const renderSquare = (day: Date, isUnavailableDate: boolean, eventInfo: { eventName: string, isStart: boolean, isEnd: boolean, isSingleDay: boolean } | null) => {
+    const renderSquare = (
+        day: Date,
+        hasEvents: boolean,
+        events: { event: Event; isStart: boolean; isEnd: boolean; isSingleDay: boolean }[]
+    ) => {
         return (
             <div
                 key={day.toString()}
-                className={`relative h-24 p-1 text-left border ${
-                    !isSameMonth(day, startOfMonth(new Date(year, month)))
-                        ? 'text-gray-400'
-                        : isUnavailableDate
-                            ? 'bg-[#D4D4D4] text-red-500 line-through'
-                            : ''
+                className={`relative px-3 py-1 text-left border ${
+                    hasEvents
+                        ? 'bg-[#D4D4D4]'
+                        : ''
                 }`}
+                style={{height: '6.5rem'}}
             >
-                {format(day, 'd')}
-                {renderEventBar(eventInfo)}
+                <div
+                    className={
+                        !isSameMonth(day, startOfMonth(new Date(year, month)))
+                            ? 'text-white'
+                            : hasEvents
+                                ? ' text-red-500 line-through text-sm'
+                                : 'text-sm'
+                    }
+                >
+                    {format(day, 'd')}
+                </div>
+                {renderEventBars(events)}
             </div>
         );
     };
 
+    // Function to render a single day square
     const renderDaySquare = (day: Date) => {
-        const eventInfo = getEventForDate(day);
-        const isUnavailableDate = !!eventInfo;
+        const events = getEventsForDate(day);
+        const hasEvents = events.length > 0;
 
-        return renderSquare(day, isUnavailableDate, eventInfo);
+        return renderSquare(day, hasEvents, events);
     };
 
     return (
-        <div className="max-w-2xl mx-auto p-5">
-            <div className="text-center mb-4">
-                <h2 className="text-2xl font-bold">{format(monthStart, 'MMMM yyyy')}</h2>
-            </div>
+        <div className="">
+
             <div className="grid grid-cols-7">
                 {/* Render headers for days of the week */}
                 {['Luni', 'Marți', 'Miercuri', 'Joi', 'Vineri', 'Sâmbătă', 'Duminică'].map((day, index) => (
