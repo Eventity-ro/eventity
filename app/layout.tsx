@@ -3,6 +3,7 @@ import {Inter} from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import Head from "next/head";
 import {NextUIProvider} from "@nextui-org/react";
 
 const inter = Inter({subsets: ["latin"]});
@@ -19,7 +20,11 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-        <body className={inter.className}>
+        <Head>
+            <link rel="icon" type="image/svg+xml" href="/logo.svg"/>
+            <link rel="icon" type="image/png" sizes="32x32" href="/logo.png"/>
+        </Head>
+        <body className={`${inter.className}`}>
         <div className="flex flex-col min-h-screen">
             {/*<NextUIProvider>*/}
             <header>
@@ -33,7 +38,7 @@ export default function RootLayout({
             </footer>
             {/*</NextUIProvider>*/}
         </div>
-        </body>
+            </body>
         </html>
     );
 }
