@@ -1,7 +1,7 @@
 import HomeCard from "@/components/HomeCard";
 import exampleImage1 from "@/images/Example1.jpg"
 import exampleImage2 from "@/images/Example2.jpg"
-import Toolbar from "@/components/Toolbar";
+import React from "react";
 
 export default function Services() {
     const cards = [
@@ -30,17 +30,34 @@ export default function Services() {
     ]
 
     return (
-        <div className="flex-1">
-            <h2 className="text-2xl font-bold mb-4">Serviciile mele</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 m-5">
+        <div className="flex-1 max-w-5xl mx-auto">
+            <h2 className="text-2xl font-bold mb-4">Servicii</h2>
+
+            <button className="bg-[#5C8171] text-white px-6 py-2 rounded mb-5">
+                Adaugă eveniment nou
+            </button>
+
+            <h2 className="text-2xl font-bold mb-4">Serviciile Mele</h2>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 m y-5">
                 {
                     cards.map((card, index) => (
-                        <HomeCard key={index} title={card.title} location={card.location}
-                                  startingPrice={card.startingPrice} imageList={card.imageList} rating={card.rating}
-                                  capacity={card?.capacity}/>
+                        <div>
+                            <HomeCard key={index} title={card.title} location={card.location}
+                                      startingPrice={card.startingPrice} imageList={card.imageList} rating={card.rating}
+                                      capacity={card?.capacity}/>
+                            <button className="bg-[#5C8171] text-white px-6 py-2 rounded mb-5">Editeaza</button>
+                        </div>
                     ))
                 }
             </div>
+
+            <h2 className="text-2xl font-bold mb-4">Partenerii Mei</h2>
+
+            <button className="bg-[#5C8171] text-white px-6 py-2 rounded mb-5">
+                Adauga parteneri
+            </button>
+
         </div>
     );
 }
