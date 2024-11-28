@@ -34,7 +34,7 @@ export default function Header() {
                 className="flex flex-row justify-between items-center gap-4 lg:gap-[20%] p-4 lg:px-12"
             >
                 <Link href="/admin/dashboard">
-                    <Image src={logo} alt="logo" width={50} height={50}/>
+                    <Image src={logo} alt="logo" width={100} height={100}/>
                 </Link>
                 <div className='flex gap-x-8'>
                     <div className='flex gap-x-8'>
