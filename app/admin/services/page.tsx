@@ -55,7 +55,7 @@ export default function Services() {
             <h2 className="text-2xl font-bold mb-4">Partenerii Mei</h2>
 
             <button className="bg-[#5C8171] text-white px-6 py-2 rounded mb-5">
-                Adauga parteneri
+                Adaugă parteneri
             </button>
 
         </div>
