@@ -4,7 +4,7 @@ import React from 'react';
 import AppButton from "@/components/buttons/AppButton";
 import ProfileButton from "@/components/buttons/ProfileButton";
 import SearchBar from '@/components/SearchBar';
-import logo from "@/images/Logo.svg"
+import logo from "@/images/logo.svg"
 import Image from "next/image";
 import { usePathname } from 'next/navigation'
 import Link from 'next/link';
