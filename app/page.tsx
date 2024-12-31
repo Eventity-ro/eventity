@@ -3,7 +3,6 @@ import exampleImage1 from "@/images/Example1.jpg"
 import exampleImage2 from "@/images/Example2.jpg"
 import Toolbar from "@/components/Toolbar";
 
-
 export default function Home() {
     const cards = [
         {
@@ -44,16 +43,16 @@ export default function Home() {
         }
     ]
 
-  return (
-      <div className="flex-1">
-          <Toolbar/>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 m-5">
-              {
-                  cards.map((card, index) => (
-                      <HomeCard key={index} title={card.title} location={card.location} startingPrice={card.startingPrice} imageList={card.imageList} rating={card.rating} capacity={card?.capacity}/>
-                  ))
-              }
-          </div>
-      </div>
-  );
+    return (
+        <div className="flex-1">
+            <Toolbar/>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 m-5">
+                {
+                    cards.map((card, index) => (
+                        <HomeCard key={index} title={card.title} location={card.location} startingPrice={card.startingPrice} imageList={card.imageList} rating={card.rating} capacity={card?.capacity}/>
+                    ))
+                }
+            </div>
+        </div>
+    );
 }

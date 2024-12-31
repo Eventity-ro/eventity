@@ -2,8 +2,8 @@
 
 import React, {useCallback, useState} from 'react';
 import FormTextInput from "@/components/FormTextInput";
-import FormButton from "@/components/FormButton";
 import FormDropdownComponent from "@/components/FormDropdownComponent";
+import Link from "next/link";
 
 const NewClientForm = () => {
 
@@ -110,7 +110,10 @@ const NewClientForm = () => {
             {/* Submit Button */}
             <div className="mt-6 flex justify-end">
                 <div className="w-1/2 pl-2">
-                    <FormButton label='Urmatorul pas' darkMode={true} onClick={() => console.log('Urmatorul pas')}/>
+                    {/*<FormButton label='Urmatorul pas' darkMode={true} onClick={() => console.log('Urmatorul pas')}/>*/}
+                    <Link className="bg-[#5C8171] text-white px-6 py-2 rounded mb-5" href={"/admin/services/new/venue"}>
+                        Urmatorul Pas
+                    </Link>
                 </div>
             </div>
         </div>

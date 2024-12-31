@@ -1,6 +1,6 @@
 import React from 'react';
 import AccountDetailsForm from "@/components/forms/AccountDetailsForm";
-import logo from "@/public/logo.png"
+import logo from "@/images/logo.svg"
 import Image from "next/image";
 
 export default function Details() {

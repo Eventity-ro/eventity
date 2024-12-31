@@ -1,10 +1,9 @@
 'use client';
 
 import React, {useState} from 'react';
-import FormButton from "@/components/FormButton";
-import ImageUploadComponent from "@/components/forms/ImageUploadComponent";
 import FormTextAreaInput from "@/components/FormTextAreaInput";
 import FormMultiselectInput from "@/components/FormMultiselectInput";
+import Link from "next/link";
 
 const NewDetailsForm = () => {
 
@@ -31,10 +30,16 @@ const NewDetailsForm = () => {
             {/* Submit Button */}
             <div className="mt-20 flex justify-end gap-2">
                 <div className="w-1/2">
-                    <FormButton label='Inapoi' darkMode={false} onClick={() => console.log('Inapoi')}/>
+                {/*    <FormButton label='Inapoi' darkMode={false} onClick={() => console.log('Inapoi')}/>*/}
+                    <Link className="bg-[#5C8171] text-white px-6 py-2 rounded mb-5" href={"/admin/services/new/venue"}>
+                        Inapoi
+                    </Link>
                 </div>
                 <div className="w-1/2">
-                    <FormButton label='Urmatorul pas' darkMode={true} onClick={() => console.log(description)}/>
+                    {/*<FormButton label='Urmatorul pas' darkMode={true} onClick={() => console.log(description)}/>*/}
+                    <Link className="bg-[#5C8171] text-white px-6 py-2 rounded mb-5" href={"/admin/services"}>
+                        Finalizeaza
+                    </Link>
                 </div>
             </div>
         </div>
