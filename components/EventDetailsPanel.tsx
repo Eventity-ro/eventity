@@ -5,13 +5,11 @@ import {Button, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Input} fr
 import {Selection} from "@react-types/shared";
 
 interface EventDetailsPanelProps {
-    selectedEvent: Event | null;
+    selectedEvent: Event;
     closePanel: () => void;
 }
 
 const EventDetailsPanel: React.FC<EventDetailsPanelProps> = ({ selectedEvent, closePanel }) => {
-    if (!selectedEvent) return null;
-
     const [selectedKeys, setSelectedKeys] = React.useState<Selection>(new Set([selectedEvent.location.name]));
 
     const selectedValue = React.useMemo(
@@ -42,6 +40,8 @@ const EventDetailsPanel: React.FC<EventDetailsPanelProps> = ({ selectedEvent, cl
             </Dropdown>
         )
     }
+
+    if (!selectedEvent) return null;
 
     return (
         <div className="fixed right-0 top-0 w-80 h-full bg-white shadow-lg p-5 z-50 border-l">

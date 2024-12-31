@@ -3,13 +3,12 @@
 import React, {useState} from 'react';
 import {Selection} from "@react-types/shared";
 import Calendar, {Event} from '@/components/AdminMonthCalendar';
-import EventDetailsPanel from '@/components/EventDetailsPanel'
-import {format, startOfMonth} from "date-fns";
+import EventDetailsPanel from '@/components/EventDetailsPanel';
 import {Button, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger} from "@nextui-org/react";
 
 function App() {
 
-    const [selectedEvent, setSelectedEvent] = useState<Event | null>(null); // State for the selected event
+    const [selectedEvent, setSelectedEvent] = useState<Event>(); // State for the selected event
     const [isPanelOpen, setIsPanelOpen] = useState(false); // State for the side panel visibility
 
     // Function to open the side panel with event details
