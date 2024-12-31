@@ -2,23 +2,13 @@
 
 import React, {useCallback, useState} from 'react';
 import FormTextInput from "@/components/FormTextInput";
-import FormButton from "@/components/FormButton";
-import FormDropdownComponent from "@/components/FormDropdownComponent";
 import ImageUploadComponent from "@/components/forms/ImageUploadComponent";
+import Link from "next/link";
 
 const NewVenueForm = () => {
 
     const [venueCapacity, setVenueCapacity] = useState(250);
     const [menuStartPrice, setMenuStartPrice] = useState(200);
-
-    const options = [
-        '100',
-        '200',
-        '300',
-        '400',
-        '500',
-        '600',
-    ];
 
     const handleVenueCapacityChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         setVenueCapacity(Number(e.target.value));
@@ -64,10 +54,16 @@ const NewVenueForm = () => {
             {/* Submit Button */}
             <div className="mt-20 flex justify-end gap-2">
                 <div className="w-1/2">
-                    <FormButton label='Inapoi' darkMode={false} onClick={() => console.log('Inapoi')}/>
+                    {/*<FormButton label='Inapoi' darkMode={false} onClick={() => console.log('Inapoi')}/>*/}
+                    <Link className="bg-[#5C8171] text-white px-6 py-2 rounded mb-5" href={"/admin/services/new"}>
+                        Inapoi
+                    </Link>
                 </div>
                 <div className="w-1/2">
-                    <FormButton label='Urmatorul pas' darkMode={true} onClick={() => console.log('Urmatorul pas')}/>
+                    {/*<FormButton label='Urmatorul pas' darkMode={true} onClick={() => console.log('Urmatorul pas')}/>*/}
+                    <Link className="bg-[#5C8171] text-white px-6 py-2 rounded mb-5" href={"/admin/services/new/details"}>
+                        Urmatorul Pas
+                    </Link>
                 </div>
             </div>
         </div>

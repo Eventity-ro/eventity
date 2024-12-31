@@ -1,6 +1,7 @@
 import HomeCard from "@/components/HomeCard";
 import exampleImage1 from "@/images/Example1.jpg"
 import exampleImage2 from "@/images/Example2.jpg"
+import Link from "next/link";
 import React from "react";
 
 export default function Services() {
@@ -46,7 +47,9 @@ export default function Services() {
                             <HomeCard key={index} title={card.title} location={card.location}
                                       startingPrice={card.startingPrice} imageList={card.imageList} rating={card.rating}
                                       capacity={card?.capacity}/>
-                            <button className="bg-[#5C8171] text-white px-6 py-2 rounded mb-5">Editeaza</button>
+                            <Link className="bg-[#5C8171] text-white px-6 py-2 rounded mb-5" href={"/admin/services/new"}>
+                                Editeaza
+                            </Link>
                         </div>
                     ))
                 }

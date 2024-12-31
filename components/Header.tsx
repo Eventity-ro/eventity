@@ -39,13 +39,13 @@ export default function Header() {
                 <div className='flex gap-x-8'>
                     <div className='flex gap-x-8'>
                         {
-                            adminPageTitle(pathName.includes('dashboard'), 'Recente', 'dashboard')
+                            adminPageTitle(pathName.includes('dashboard'), 'Recente', '/admin/dashboard')
                         }
                         {
-                            adminPageTitle(pathName.includes('calendar'), 'Calendar', 'calendar')
+                            adminPageTitle(pathName.includes('calendar'), 'Calendar', '/admin/calendar')
                         }
                         {
-                            adminPageTitle(pathName.includes('services'), 'Serviciile mele', 'services')
+                            adminPageTitle(pathName.includes('services'), 'Serviciile mele', '/admin/services')
                         }
                     </div>
                 </div>
@@ -60,7 +60,7 @@ const header = () => {
             className="flex flex-col lg:flex-row justify-between items-center gap-4 lg:gap-[20%] pt-4 pb-2 px-4 lg:px-12"
         >
             <Link href='/'>
-                <Image src={logo} alt="logo" width={50} height={50}/>
+                <Image src={logo} alt="logo" width={100} height={100}/>
             </Link>
                 <SearchBar/>
                 <div className="flex items-center gap-2">
