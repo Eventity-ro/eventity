@@ -11,6 +11,8 @@ import ReviewCard from "@/components/ReviewCard";
 import NewReviewModal from "@/components/NewReviewModal";
 import ClientContactInfo from "@/components/ClientContactInfo";
 import MapComponent from "@/components/MapComponent";
+import {Calendar} from "@nextui-org/react";
+import {parseDate} from "@internationalized/date";
 
 const ClientPage = () => {
     const searchParams = useSearchParams();
@@ -227,6 +229,9 @@ const ClientPage = () => {
 
                         <div className="lg:col-span-1">
                             <div className="sticky top-10">
+
+                                {/*Calendar*/}
+                                <Calendar aria-label="Date (Uncontrolled)" defaultValue={parseDate("2025-01-02")} />
 
                                 {/*Date contact*/}
                                 <ClientContactInfo/>

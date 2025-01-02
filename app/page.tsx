@@ -1,9 +1,17 @@
+'use client'
+
 import HomeCard from "@/components/HomeCard";
 import exampleImage1 from "@/images/Example1.jpg"
 import exampleImage2 from "@/images/Example2.jpg"
 import Toolbar from "@/components/Toolbar";
+import {
+    Button, useDisclosure
+} from '@nextui-org/react';
+import FilterModal from "@/components/FilterModal";
 
 export default function Home() {
+    const {isOpen, onOpen, onOpenChange} = useDisclosure();
+
     const cards = [
         {
             title: "Example1",
@@ -45,7 +53,12 @@ export default function Home() {
 
     return (
         <div className="flex-1">
-            <Toolbar/>
+            {/*<Toolbar/>*/}
+            {/*{getModal()}*/}
+            <Button color="primary" onPress={onOpen}>
+                Open Filters
+            </Button>
+            <FilterModal isOpen={isOpen} onOpenChange={onOpenChange} />
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 m-5">
                 {
                     cards.map((card, index) => (
