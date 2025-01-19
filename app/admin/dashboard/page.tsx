@@ -1,7 +1,13 @@
+'use client'
+
 import React from 'react';
 import DashboardCard from '@/components/AdminDashCard';
+import {useDisclosure} from "@heroui/react";
+import NewEventModal from "@/components/NewEventModal";
 
 export default function AdminDashboard() {
+
+    const {isOpen, onOpen, onOpenChange} = useDisclosure();
 
     const events = [
         {
@@ -21,9 +27,11 @@ export default function AdminDashboard() {
         <div className="p-5 max-w-5xl mx-auto">
             <h1 className="text-3xl font-bold my-14">Bun venit înapoi, Restaurant Select</h1>
 
-            <button className="bg-[#5C8171] text-white px-6 py-2 rounded mb-5">
+            <button className="bg-[#5C8171] text-white px-6 py-2 rounded mb-5" onClick={onOpen}>
                 Adaugă eveniment nou
             </button>
+
+            <NewEventModal isOpen={isOpen} onOpenChange={onOpenChange} />
 
             <h2 className="text-xl font-semibold mb-5">Evenimente următoare</h2>
 

@@ -6,7 +6,7 @@ import exampleImage2 from "@/images/Example2.jpg"
 import Toolbar from "@/components/Toolbar";
 import {
     Button, useDisclosure
-} from '@nextui-org/react';
+} from "@heroui/react";
 import FilterModal from "@/components/FilterModal";
 
 export default function Home() {
@@ -54,7 +54,6 @@ export default function Home() {
     return (
         <div className="flex-1">
             {/*<Toolbar/>*/}
-            {/*{getModal()}*/}
             <Button color="primary" onPress={onOpen}>
                 Open Filters
             </Button>

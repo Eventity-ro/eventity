@@ -4,7 +4,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Head from "next/head";
-import {NextUIProvider} from "@nextui-org/react";
+import {HeroUIProvider} from "@heroui/react";
 
 const inter = Inter({subsets: ["latin"]});
 
@@ -26,7 +26,7 @@ export default function RootLayout({
         </Head>
         <body className={`${inter.className}`}>
         <div className="flex flex-col min-h-screen">
-            {/*<NextUIProvider>*/}
+            {/*<HeroUIProvider>*/}
             <header>
                 <Header/>
             </header>
@@ -36,7 +36,7 @@ export default function RootLayout({
             <footer>
                 <Footer/>
             </footer>
-            {/*</NextUIProvider>*/}
+            {/*</HeroUIProvider>*/}
         </div>
             </body>
         </html>

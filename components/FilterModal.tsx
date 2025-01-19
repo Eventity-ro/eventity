@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Calendar, Modal, ModalContent, ModalFooter, ModalHeader, ModalBody} from '@nextui-org/react';
+import {Button, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Calendar, Modal, ModalContent, ModalFooter, ModalHeader, ModalBody} from "@heroui/react";
 import {parseDate} from "@internationalized/date";
 
 type FiltersModalProps = {
@@ -47,7 +47,7 @@ const FilterModal: React.FC<FiltersModalProps> = ({ isOpen, onOpenChange }) => {
                                                     <Button>Alege județ</Button>
                                                 </DropdownTrigger>
                                                 <DropdownMenu aria-label="Județe">
-                                                    <DropdownItem>Alege județ</DropdownItem>
+                                                    <DropdownItem key='judet'>Alege județ</DropdownItem>
                                                 </DropdownMenu>
                                             </Dropdown>
                                             <Dropdown className="mt-2">
@@ -55,7 +55,7 @@ const FilterModal: React.FC<FiltersModalProps> = ({ isOpen, onOpenChange }) => {
                                                     <Button>Alege localitate</Button>
                                                 </DropdownTrigger>
                                                 <DropdownMenu aria-label="Localități">
-                                                    <DropdownItem>Alege localitate</DropdownItem>
+                                                    <DropdownItem key='localitate'>Alege localitate</DropdownItem>
                                                 </DropdownMenu>
                                             </Dropdown>
                                         </div>

@@ -4,7 +4,7 @@ import React, {useState} from 'react';
 import {Selection} from "@react-types/shared";
 import Calendar, {Event} from '@/components/AdminMonthCalendar';
 import EventDetailsPanel from '@/components/EventDetailsPanel';
-import {Button, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger} from "@nextui-org/react";
+import {Button, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger} from "@heroui/react";
 
 function App() {
 

@@ -11,7 +11,7 @@ import ReviewCard from "@/components/ReviewCard";
 import NewReviewModal from "@/components/NewReviewModal";
 import ClientContactInfo from "@/components/ClientContactInfo";
 import MapComponent from "@/components/MapComponent";
-import {Calendar} from "@nextui-org/react";
+import {Calendar} from "@heroui/react";
 import {parseDate} from "@internationalized/date";
 
 const ClientPage = () => {

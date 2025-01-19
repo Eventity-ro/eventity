@@ -1,7 +1,7 @@
 // EventDetailsPanel.tsx
 import React from 'react';
 import { Event } from '@/components/AdminMonthCalendar';
-import {Button, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Input} from "@nextui-org/react";
+import {Button, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Input} from "@heroui/react";
 import {Selection} from "@react-types/shared";
 
 interface EventDetailsPanelProps {
