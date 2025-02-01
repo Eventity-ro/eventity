@@ -2,8 +2,13 @@ import HomeCard from "@/components/HomeCard";
 import exampleImage1 from "@/images/Example1.jpg"
 import exampleImage2 from "@/images/Example2.jpg"
 import Toolbar from "@/components/Toolbar";
+import { sql } from '@vercel/postgres';
 
-export default function Home() {
+export default async function Home() {
+
+    const restaurants =  await sql`SELECT * FROM restaurant;`;
+
+
     const cards = [
         {
             title: "Example1",
