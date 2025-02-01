@@ -1,13 +1,19 @@
+'use client'
+
 import HomeCard from "@/components/HomeCard";
 import exampleImage1 from "@/images/Example1.jpg"
 import exampleImage2 from "@/images/Example2.jpg"
 import Toolbar from "@/components/Toolbar";
+import {
+    Button, useDisclosure
+} from "@heroui/react";
+import FilterModal from "@/components/FilterModal";
 import { sql } from '@vercel/postgres';
 
 export default async function Home() {
+    const {isOpen, onOpen, onOpenChange} = useDisclosure();
 
     const restaurants =  await sql`SELECT * FROM restaurant;`;
-
 
     const cards = [
         {
@@ -50,7 +56,11 @@ export default async function Home() {
 
     return (
         <div className="flex-1">
-            <Toolbar/>
+            {/*<Toolbar/>*/}
+            <Button color="primary" onPress={onOpen}>
+                Open Filters
+            </Button>
+            <FilterModal isOpen={isOpen} onOpenChange={onOpenChange} />
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 m-5">
                 {
                     cards.map((card, index) => (

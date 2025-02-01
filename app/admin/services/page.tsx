@@ -32,13 +32,13 @@ export default function Services() {
 
     return (
         <div className="flex-1 max-w-5xl mx-auto">
-            <h2 className="text-2xl font-bold mb-4">Servicii</h2>
+            <h2 className="text-2xl font-bold my-10">Servicii</h2>
 
-            <button className="bg-[#5C8171] text-white px-6 py-2 rounded mb-5">
-                Adaugă eveniment nou
-            </button>
+            <Link className="bg-[#5C8171] text-white px-6 py-2 rounded" href={"/admin/services/new"}>
+                Adauga serviciu nou
+            </Link>
 
-            <h2 className="text-2xl font-bold mb-4">Serviciile Mele</h2>
+            <h2 className="text-2xl font-bold my-6">Serviciile Mele</h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 m y-5">
                 {
@@ -47,7 +47,7 @@ export default function Services() {
                             <HomeCard title={card.title} location={card.location}
                                       startingPrice={card.startingPrice} imageList={card.imageList} rating={card.rating}
                                       capacity={card?.capacity}/>
-                            <Link className="bg-[#5C8171] text-white px-6 py-2 rounded mb-5" href={"/admin/services/new"}>
+                            <Link className="bg-[#5C8171] text-white px-6 py-2 rounded mb-5" href={"/admin/services/details"}>
                                 Editeaza
                             </Link>
                         </div>
