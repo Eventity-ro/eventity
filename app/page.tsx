@@ -8,9 +8,12 @@ import {
     Button, useDisclosure
 } from "@heroui/react";
 import FilterModal from "@/components/FilterModal";
+import { sql } from '@vercel/postgres';
 
-export default function Home() {
+export default async function Home() {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
+
+    const restaurants =  await sql`SELECT * FROM restaurant;`;
 
     const cards = [
         {
