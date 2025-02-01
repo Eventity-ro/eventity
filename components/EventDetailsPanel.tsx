@@ -1,8 +1,6 @@
-// EventDetailsPanel.tsx
 import React from 'react';
 import { Event } from '@/components/AdminMonthCalendar';
 import {Button, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Input} from "@heroui/react";
-import {Selection} from "@react-types/shared";
 
 interface EventDetailsPanelProps {
     selectedEvent: Event;
@@ -10,7 +8,7 @@ interface EventDetailsPanelProps {
 }
 
 const EventDetailsPanel: React.FC<EventDetailsPanelProps> = ({ selectedEvent, closePanel }) => {
-    const [selectedKeys, setSelectedKeys] = React.useState<Selection>(new Set([selectedEvent.location.name]));
+    const [selectedKeys, setSelectedKeys] = React.useState<any>(new Set([selectedEvent.location.name]));
 
     const selectedValue = React.useMemo(
         () => Array.from(selectedKeys).join(", "),

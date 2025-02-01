@@ -1,7 +1,6 @@
 'use client'
 
 import React, {useState} from 'react';
-import {Selection} from "@react-types/shared";
 import Calendar, {Event} from '@/components/AdminMonthCalendar';
 import EventDetailsPanel from '@/components/EventDetailsPanel';
 import {Button, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger} from "@heroui/react";
@@ -101,7 +100,7 @@ function App() {
 
     const startOfNextMonth: Date = new Date(now.getFullYear(), now.getMonth() + 1, 1);
 
-    const [selectedMonthKeys, setSelectedMonthKeys] = React.useState<Selection>(new Set([startOfCurrentMonth.getMonth()]));
+    const [selectedMonthKeys, setSelectedMonthKeys] = React.useState<any>(new Set([startOfCurrentMonth.getMonth()]));
 
     const selectedMonthValue = React.useMemo(
         () => monthIndex[Array.from(selectedMonthKeys).join(", ")],
@@ -141,7 +140,7 @@ function App() {
         )
     }
 
-    const [selectedYearKeys, setSelectedYearKeys] = React.useState<Selection>(new Set([startOfCurrentMonth.getFullYear()]));
+    const [selectedYearKeys, setSelectedYearKeys] = React.useState<any>(new Set([startOfCurrentMonth.getFullYear()]));
 
     const selectedYearValue = React.useMemo(
         () => Array.from(selectedYearKeys).join(", "),
