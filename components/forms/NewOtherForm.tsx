@@ -37,13 +37,9 @@ const NewOtherForm = () => {
             </div>
 
             {/* Submit Button */}
-            <div className="mt-20 flex justify-end gap-2">
-                <div className="w-1/2">
-                    <FormButton label='Inapoi' darkMode={false} onClick={() => console.log('Inapoi')}/>
-                </div>
-                <div className="w-1/2">
-                    <FormButton label='Urmatorul pas' darkMode={true} onClick={() => console.log('Urmatorul pas')}/>
-                </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                <FormButton label='Inapoi' darkMode={false} onClick={() => console.log('Inapoi')}/>
+                <FormButton label='Urmatorul pas' darkMode={true} onClick={() => console.log('Urmatorul pas')}/>
             </div>
         </div>
     );
