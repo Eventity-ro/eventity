@@ -20,23 +20,23 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-        <Head>
-            <link rel="icon" type="image/svg+xml" href="/logo.svg"/>
-            <link rel="icon" type="image/png" sizes="32x32" href="/logo.png"/>
-        </Head>
+        {/*<Head>*/}
+        {/*    <link rel="icon" type="image/svg+xml" href="/logo.svg"/>*/}
+        {/*    <link rel="icon" type="image/png" sizes="32x32" href="/logo.png"/>*/}
+        {/*</Head>*/}
         <body className={`${inter.className}`}>
         <div className="flex flex-col min-h-screen">
-            {/*<HeroUIProvider>*/}
-            <header>
-                <Header/>
-            </header>
-            <main className='flex-grow'>
-                {children}
-            </main>
-            <footer>
-                <Footer/>
-            </footer>
-            {/*</HeroUIProvider>*/}
+            <HeroUIProvider>
+                <header>
+                    <Header/>
+                </header>
+                <main className='flex-grow'>
+                    {children}
+                </main>
+                <footer>
+                    <Footer/>
+                </footer>
+            </HeroUIProvider>
         </div>
             </body>
         </html>

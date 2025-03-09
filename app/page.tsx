@@ -1,73 +1,9 @@
-'use client'
-
-import HomeCard from "@/components/HomeCard";
-import exampleImage1 from "@/images/Example1.jpg"
-import exampleImage2 from "@/images/Example2.jpg"
-import Toolbar from "@/components/Toolbar";
-import {
-    Button, useDisclosure
-} from "@heroui/react";
-import FilterModal from "@/components/FilterModal";
 import { sql } from '@vercel/postgres';
+import HomePage from "@/app/HomePage";
 
 export default async function Home() {
-    const {isOpen, onOpen, onOpenChange} = useDisclosure();
-
-    const restaurants =  await sql`SELECT * FROM restaurant;`;
-
-    const cards = [
-        {
-            title: "Example1",
-            location: "Bucuresti",
-            startingPrice: 60,
-            imageList: [exampleImage1, exampleImage2, exampleImage1, exampleImage2, exampleImage1, exampleImage1, exampleImage1, exampleImage1, exampleImage1, exampleImage1, exampleImage1, exampleImage1],
-            rating: 5,
-            capacity: "100-200"
-        },
-        {
-            title: "Example2",
-            location: "Bucuresti",
-            startingPrice: 50,
-            imageList: [exampleImage1, exampleImage2],
-            rating: 4.5
-        },
-        {
-            title: "Example3",
-            location: "Bucuresti",
-            startingPrice: 30,
-            imageList: [exampleImage1, exampleImage2],
-            rating: 3.5
-        },
-        {
-            title: "Example4",
-            location: "Bucuresti",
-            startingPrice: 20,
-            imageList: [exampleImage1, exampleImage2],
-            rating: 4.9
-        },
-        {
-            title: "Example5",
-            location: "Bucuresti",
-            startingPrice: 10,
-            imageList: [exampleImage1, exampleImage2],
-            rating: 5
-        }
-    ]
-
+    const {rows, fields} =  await sql`SELECT * FROM restaurant r LEFT JOIN venue v ON r.id = v.restaurant_id;`;
     return (
-        <div className="flex-1">
-            {/*<Toolbar/>*/}
-            <Button color="primary" onPress={onOpen}>
-                Open Filters
-            </Button>
-            <FilterModal isOpen={isOpen} onOpenChange={onOpenChange} />
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 m-5">
-                {
-                    cards.map((card, index) => (
-                        <HomeCard key={index} title={card.title} location={card.location} startingPrice={card.startingPrice} imageList={card.imageList} rating={card.rating} capacity={card?.capacity}/>
-                    ))
-                }
-            </div>
-        </div>
+        <HomePage initialData={rows}/>
     );
 }
