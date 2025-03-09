@@ -4,11 +4,22 @@ import React, {useCallback, useState} from 'react';
 import FormTextInput from "@/components/FormTextInput";
 import ImageUploadComponent from "@/components/forms/ImageUploadComponent";
 import Link from "next/link";
+import {useSearchParams} from "next/navigation";
 
 const NewVenueForm = () => {
 
+    const searchParams = useSearchParams();
+
+    const name = searchParams.get('name');
+
     const [venueCapacity, setVenueCapacity] = useState(250);
     const [menuStartPrice, setMenuStartPrice] = useState(200);
+
+    const sendDict = {
+        name: name,
+        capacity: venueCapacity,
+        price: menuStartPrice
+    }
 
     const handleVenueCapacityChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         setVenueCapacity(Number(e.target.value));
@@ -61,7 +72,7 @@ const NewVenueForm = () => {
                 </div>
                 <div className="w-1/2">
                     {/*<FormButton label='Urmatorul pas' darkMode={true} onClick={() => console.log('Urmatorul pas')}/>*/}
-                    <Link className="bg-[#5C8171] text-white px-6 py-2 rounded mb-5" href={"/admin/services/new/details"}>
+                    <Link className="bg-[#5C8171] text-white px-6 py-2 rounded mb-5" href={{pathname: "/admin/services/new/details", query: sendDict}}>
                         Urmatorul Pas
                     </Link>
                 </div>

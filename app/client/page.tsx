@@ -3,7 +3,7 @@
 import exampleImage1 from "@/images/Example1.jpg"
 import exampleImage2 from "@/images/Example2.jpg"
 
-import {useState} from 'react';
+import React, {useState} from 'react';
 import { useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 import { FaStar, FaShareAlt, FaHeart, FaChevronRight, FaCheck } from 'react-icons/fa';
@@ -230,8 +230,15 @@ const ClientPage = () => {
                         <div className="lg:col-span-1">
                             <div className="sticky top-10">
 
+                                <h3 className="text-lg font-medium">Disponibilitate</h3>
+                                <p className="text-sm my-2">
+                                    *Filtrarea se face pe baza datelor oferite de către clienți. Orice
+                                    neconcordanță
+                                    este asumată de către clienții afișați.
+                                </p>
                                 {/*Calendar*/}
-                                <Calendar aria-label="Date (Uncontrolled)" defaultValue={parseDate("2025-01-02")} />
+                                <Calendar isReadOnly aria-label="Date (Uncontrolled)"
+                                          defaultValue={parseDate("2025-01-02")}/>
 
                                 {/*Date contact*/}
                                 <ClientContactInfo/>

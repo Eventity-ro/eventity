@@ -43,7 +43,7 @@ export default function HomeCard({ title, location, startingPrice, imageList, ra
     };
 
     return (
-        <div className="w-full  rounded-lg overflow-hidden relative group">
+        <div className="w-full rounded-lg overflow-hidden relative group">
                 <div className="relative">
                     <Link href={{pathname: "/client", query: {title: title, rating: rating, location: location}}}>
                         <Image src={imageList[currentImage]} alt="Example Image"/>
