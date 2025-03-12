@@ -17,11 +17,7 @@ const NewOtherForm = () => {
         <div className="w-full mx-auto mt-8 bg-white p-6 rounded-lg shadow-md">
             <h2 className="text-xl font-bold mb-4">Generale</h2>
 
-            {/* Information */}
             <div className="w-full">
-
-                {/* Price */}
-                <div>
                     <FormTextInput
                         label="Pret incepand de la/ meniu (lei)"
                         type="number"
@@ -29,7 +25,6 @@ const NewOtherForm = () => {
                         edit={true}
                         onChange={handleStartPriceChange}
                     />
-                </div>
             </div>
 
             <div className="w-full mt-4">

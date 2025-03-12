@@ -7,7 +7,11 @@ import Link from "next/link";
 import {useSearchParams} from "next/navigation";
 import FormButton from "@/components/FormButton";
 
-const NewVenueForm = () => {
+interface NewVenueFormProps {
+    onBack: () => void,
+    onSubmit: () => void;
+}
+const NewVenueForm: React.FC<NewVenueFormProps> = ({onBack, onSubmit}) => {
 
     const searchParams = useSearchParams();
 
@@ -31,7 +35,7 @@ const NewVenueForm = () => {
     }, []);
 
     return (
-        <div className="w-full mx-auto mt-8 bg-white p-6 rounded-lg shadow-md">
+        <div className="w-full mx-auto mt-8 bg-white p-6 rounded-lg shadow-2xl">
             <h2 className="text-xl font-bold mb-4">Generale</h2>
 
             {/* Venue Information */}
@@ -62,8 +66,8 @@ const NewVenueForm = () => {
 
             {/* Submit Button */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                <FormButton label='Inapoi' darkMode={false} onClick={() => console.log('Inapoi')}/>
-                <FormButton label='Urmatorul pas' darkMode={true} onClick={() => console.log('Urmatorul pas')}/>
+                <FormButton label='Inapoi' darkMode={false} onClick={onBack}/>
+                <FormButton label='Urmatorul pas' darkMode={true} onClick={onSubmit}/>
             </div>
         </div>
     );

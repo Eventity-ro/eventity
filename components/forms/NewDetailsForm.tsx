@@ -3,11 +3,14 @@
 import React, {useState} from 'react';
 import FormTextAreaInput from "@/components/FormTextAreaInput";
 import FormMultiselectInput from "@/components/FormMultiselectInput";
-import Link from "next/link";
 import {useSearchParams} from "next/navigation";
 import FormButton from "@/components/FormButton";
 
-const NewDetailsForm = () => {
+interface NewDetailsFormProps {
+    onBack: () => void,
+    onSubmit: () => void;
+}
+const NewDetailsForm: React.FC<NewDetailsFormProps> = ({onBack, onSubmit}) => {
 
     const [description, setDescription] = useState('');
 
@@ -29,7 +32,7 @@ const NewDetailsForm = () => {
     }
 
     return (
-        <div className="w-full mx-auto mt-8 bg-white p-6 rounded-lg shadow-md">
+        <div className="w-full mx-auto mt-8 bg-white p-6 rounded-lg shadow-2xl">
             <div className="mb-2">
                 <h2 className="text-xl font-bold mb-4">Alte detalii</h2>
 
@@ -49,8 +52,8 @@ const NewDetailsForm = () => {
 
             {/* Submit Button */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                <FormButton label='Inapoi' darkMode={false} onClick={() => console.log('Inapoi')}/>
-                <FormButton label='Urmatorul pas' darkMode={true} onClick={() => insertIntoDb()}/>
+                <FormButton label='Inapoi' darkMode={false} onClick={onBack}/>
+                <FormButton label='Urmatorul pas' darkMode={true} onClick={onSubmit}/>
             </div>
         </div>
     );
