@@ -23,11 +23,10 @@ const SignUpForm: React.FC = () => {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        // Handle form submission here
     };
 
     return (
-        <form className="bg-white rounded pt-6 pb-8 mb-4" onSubmit={handleSubmit}>
+        <form className="rounded pt-6 pb-8 mb-4" onSubmit={handleSubmit}>
             <div className="flex flex-col gap-2">
                 <div className="mb-2 text-neutral-700 text-2xl font-semibold">Creeaza un cont nou</div>
                 <FormTextInput
