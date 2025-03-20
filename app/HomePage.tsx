@@ -7,7 +7,7 @@ import Toolbar from "@/components/Toolbar";
 import {
     Button, useDisclosure
 } from "@heroui/react";
-import FilterModal from "@/components/FilterModal";
+import FilterModal from "@/components/modals/FilterModal";
 import {useEffect, useState} from "react";
 
 export default function HomePage({initialData}) {
@@ -63,7 +63,6 @@ export default function HomePage({initialData}) {
 
     useEffect(() => {
         if (filters) {
-            console.log(filters)
             const newFilteredData = filterData(filters, data)
             setFilteredData(newFilteredData)
             setFiltersApplied(true)
@@ -72,10 +71,6 @@ export default function HomePage({initialData}) {
             setFilteredData([])
         }
     }, [filters]);
-
-    useEffect(() => {
-        console.log(data)
-    }, [data]);
 
     const ButtonList = () => {
         // Here are the labels for each button
@@ -122,11 +117,10 @@ export default function HomePage({initialData}) {
         <div className="flex-1 px-10 flex-grow">
             <ButtonList />
             <FilterModal isOpen={isOpen} onOpenChange={onOpenChange} setFilters={setFilters}/>
-            {}
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 ">
                 {
                     displayData.map((card, index) => (
-                        <HomeCard key={index} title={card.name} location={card.city} startingPrice={card.price} imageList={imageList} rating={card.rating} capacity={card?.capacity}/>
+                        <HomeCard key={index} restaurantId={card.restaurant_id} title={card.name} location={card.city} startingPrice={card.price} imageList={imageList} rating={card.rating} capacity={card?.capacity}/>
                     ))
                 }
             </div>

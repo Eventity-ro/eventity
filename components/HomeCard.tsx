@@ -6,6 +6,7 @@ import {useState} from "react";
 import Link from 'next/link';
 
 interface HomeCardProps {
+    restaurantId: number;
     title: string;
     location: string;
     startingPrice: number;
@@ -14,7 +15,7 @@ interface HomeCardProps {
     capacity?: string;
 }
 
-export default function HomeCard({ title, location, startingPrice, imageList, rating, capacity }: HomeCardProps) {
+export default function HomeCard({ restaurantId, title, location, startingPrice, imageList, rating, capacity }: HomeCardProps) {
     const [liked, setLiked] = useState(false);
     const [currentImage, setCurrentImage] = useState(0);
 
@@ -45,7 +46,7 @@ export default function HomeCard({ title, location, startingPrice, imageList, ra
     return (
         <div className="w-full rounded-lg overflow-hidden relative group">
                 <div className="relative">
-                    <Link href={{pathname: "/client", query: {title: title, rating: rating, location: location}}}>
+                    <Link href={{pathname: "/client", query: {restaurantId: restaurantId, title: title, rating: rating, location: location}}}>
                         <Image src={imageList[currentImage]} alt="Example Image"/>
                     </Link>
                     <div
