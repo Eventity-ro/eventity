@@ -3,7 +3,7 @@
 import React from 'react';
 import DashboardCard from '@/components/AdminDashCard';
 import {useDisclosure} from "@heroui/react";
-import NewEventModal from "@/components/NewEventModal";
+import NewEventModal from "@/components/modals/NewEventModal";
 
 export default function AdminDashboard() {
 
