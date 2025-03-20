@@ -1,9 +1,11 @@
 import { sql } from '@vercel/postgres';
 import HomePage from "@/app/HomePage";
+import {getRestaurants} from "@/lib/api";
 
 export default async function Home() {
-    const {rows, fields} =  await sql`SELECT * FROM restaurant r LEFT JOIN venue v ON r.id = v.restaurant_id;`;
+    const restaurants = await getRestaurants();
+
     return (
-        <HomePage initialData={rows}/>
+        <HomePage initialData={restaurants}/>
     );
 }
