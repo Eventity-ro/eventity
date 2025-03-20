@@ -3,7 +3,6 @@
 import React, {useState} from 'react';
 import FormTextAreaInput from "@/components/FormTextAreaInput";
 import FormMultiselectInput from "@/components/FormMultiselectInput";
-import {useSearchParams} from "next/navigation";
 import FormButton from "@/components/FormButton";
 
 interface NewDetailsFormProps {
@@ -14,22 +13,14 @@ const NewDetailsForm: React.FC<NewDetailsFormProps> = ({onBack, onSubmit}) => {
 
     const [description, setDescription] = useState('');
 
-    const searchParams = useSearchParams();
+    const validateFormFields = () => {
+        return true;
+    };
 
-    const name = searchParams.get('name');
-    const capacity = searchParams.get('name');
-    const price = searchParams.get('name');
-
-    const sendDict = {
-        name: name,
-        capacity: capacity,
-        price: price,
-        description: description
-    }
-
-    const insertIntoDb = () => {
-
-    }
+    const handleSubmit = () => {
+        const isValid = validateFormFields();
+        onSubmit();
+    };
 
     return (
         <div className="w-full mx-auto mt-8 bg-white p-6 rounded-lg shadow-2xl">
@@ -53,7 +44,7 @@ const NewDetailsForm: React.FC<NewDetailsFormProps> = ({onBack, onSubmit}) => {
             {/* Submit Button */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 <FormButton label='Inapoi' darkMode={false} onClick={onBack}/>
-                <FormButton label='Urmatorul pas' darkMode={true} onClick={onSubmit}/>
+                <FormButton label='Urmatorul pas' darkMode={true} onClick={handleSubmit}/>
             </div>
         </div>
     );

@@ -23,16 +23,29 @@ const NewClientForm: React.FC<NewClientFormProps> = ({onSubmit}) => {
         'Barman',
     ];
 
-    const sendDict = {
-        name: clientName
-    }
+    const validateFormFields = () => {
+        return clientName.trim() !== '' &&
+               clientPhoneNumber.trim() !== '' &&
+               clientEmail.trim() !== '' &&
+               clientInstagram.trim() !== '' &&
+               clientFacebook.trim() !== '';
+    };
+
+    const handleSubmit = () => {
+        const isValid = validateFormFields();
+        if (isValid) {
+            onSubmit();
+        } else {
+            alert("Please complete all required fields.");
+        }
+    };
 
     const handleClientNameChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         setClientName(e.target.value);
     }, []);
 
     const handleClientPhoneNumberChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-        setClientName(e.target.value);
+        setClientPhoneNumber(e.target.value);
     }, []);
 
     const handleClientEmailChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
@@ -100,7 +113,7 @@ const NewClientForm: React.FC<NewClientFormProps> = ({onSubmit}) => {
 
             {/* Submit Button */}
             <div className="mt-6">
-                <FormButton label='Urmatorul pas' darkMode={true} onClick={onSubmit}/>
+                <FormButton label='Urmatorul pas' darkMode={true} onClick={handleSubmit}/>
             </div>
         </div>
     );

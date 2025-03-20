@@ -13,18 +13,22 @@ interface NewVenueFormProps {
 }
 const NewVenueForm: React.FC<NewVenueFormProps> = ({onBack, onSubmit}) => {
 
-    const searchParams = useSearchParams();
-
-    const name = searchParams.get('name');
-
     const [venueCapacity, setVenueCapacity] = useState(250);
     const [menuStartPrice, setMenuStartPrice] = useState(200);
 
-    const sendDict = {
-        name: name,
-        capacity: venueCapacity,
-        price: menuStartPrice
-    }
+
+    const validateFormFields = () => {
+        return venueCapacity > 0 && menuStartPrice > 0;
+    };
+
+    const handleSubmit = () => {
+        const isValid = validateFormFields();
+        if (isValid) {
+            onSubmit();
+        } else {
+            alert("Capacitatea sala si pretul de start al meniului trebuie sa fie mai mare decat 0.");
+        }
+    };
 
     const handleVenueCapacityChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         setVenueCapacity(Number(e.target.value));
@@ -67,7 +71,7 @@ const NewVenueForm: React.FC<NewVenueFormProps> = ({onBack, onSubmit}) => {
             {/* Submit Button */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 <FormButton label='Inapoi' darkMode={false} onClick={onBack}/>
-                <FormButton label='Urmatorul pas' darkMode={true} onClick={onSubmit}/>
+                <FormButton label='Urmatorul pas' darkMode={true} onClick={handleSubmit}/>
             </div>
         </div>
     );
