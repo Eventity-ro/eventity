@@ -10,7 +10,7 @@ function App() {
     const [selectedEvent, setSelectedEvent] = useState<Event>(); // State for the selected event
     const [isPanelOpen, setIsPanelOpen] = useState(false); // State for the side panel visibility
 
-    // Function to open the side panel with event details
+    // Function to open the side panel with event account-details
     const openSidePanel = (event: Event) => {
         setSelectedEvent(event);
         setIsPanelOpen(true);

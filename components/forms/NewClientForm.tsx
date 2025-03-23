@@ -7,8 +7,9 @@ import FormButton from "@/components/FormButton";
 
 interface NewClientFormProps {
     onSubmit: () => void;
+    onSubmitButtonText?: string;
 }
-const NewClientForm: React.FC<NewClientFormProps> = ({onSubmit}) => {
+const NewClientForm: React.FC<NewClientFormProps> = ({onSubmit, onSubmitButtonText = "Urmatorul pas"}) => {
 
     const [clientName, setClientName] = useState('Restaurant Venus');
     const [clientPhoneNumber, setClientPhoneNumber] = useState('0755123456');
@@ -113,7 +114,7 @@ const NewClientForm: React.FC<NewClientFormProps> = ({onSubmit}) => {
 
             {/* Submit Button */}
             <div className="mt-6">
-                <FormButton label='Urmatorul pas' darkMode={true} onClick={handleSubmit}/>
+                <FormButton label={onSubmitButtonText} darkMode={true} onClick={handleSubmit}/>
             </div>
         </div>
     );

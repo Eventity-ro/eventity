@@ -1,12 +1,11 @@
 import React from "react";
-import ServicesPage from "@/app/admin/services/ServicesPage";
-import {getPartners} from "@/lib/api";
+import ServicePage from "@/app/admin/services/ServicesPage";
 
-const Services = async () => {
+const Service = async () => {
 
     return (
-        <ServicesPage restaurantId={6} />
+        <ServicePage restaurantId={6} />
     );
 }
 
-export default Services;
+export default Service;

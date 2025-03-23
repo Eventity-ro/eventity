@@ -101,7 +101,7 @@ const ServicesPage = (restaurantId: number) => {
                                       startingPrice={card.startingPrice} imageList={card.imageList} rating={card.rating}
                                       capacity={card?.capacity} restaurantId={restaurantId}/>
                             <Link className="bg-[#5C8171] text-white px-6 py-2 rounded mb-5"
-                                  href={"/admin/services/account-details"}>
+                                  href={"/admin/services/account.details"}>
                                 Editeaza
                             </Link>
                         </div>
