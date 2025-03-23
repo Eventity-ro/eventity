@@ -8,7 +8,6 @@ import Link from "next/link";
 import React, {useState} from "react";
 import {useDisclosure} from "@heroui/react";
 import AddPartnerModal from "@/components/modals/AddPartnerModal";
-import {revalidatePath} from "next/cache";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
@@ -17,7 +16,11 @@ interface Partner {
     name: string;
 }
 
-const ServicesPage = (restaurantId: number) => {
+interface ServicesPageProps {
+    restaurantId: number;
+}
+
+const ServicesPage: React.FC<ServicesPageProps> = ({restaurantId}) => {
     const cards = [
         {
             title: "Example1",
