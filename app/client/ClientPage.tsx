@@ -13,10 +13,11 @@ import ClientContactInfo from "@/components/ClientContactInfo";
 import MapComponent from "@/components/MapComponent";
 import {Calendar} from "@heroui/react";
 import {parseDate} from "@internationalized/date";
+import Partner from "@/types/partner";
 
-const ClientPage = (partners) => {
+const ClientPage = ({partners}: {partners: Partner[]}) => {
     const searchParams = useSearchParams();
-    const title = searchParams.get('title');
+    const name = searchParams.get('name');
     const rating = searchParams.get('rating');
     // const reviews = searchParams.get('reviews');
     const location = searchParams.get('location');
@@ -79,7 +80,7 @@ const ClientPage = (partners) => {
             <div className="p-2">
                 <div className="mx-auto">
                     <div>
-                        <h1 className="text-3xl font-bold">{title}</h1>
+                        <h1 className="text-3xl font-bold">{name}</h1>
                         <div className="mb-1 flex justify-between items-center">
                             <div className="flex items-center text-gray-600">
                                 <FaStar className="mr-1"/>
@@ -251,7 +252,7 @@ const ClientPage = (partners) => {
                                 <h3 className="text-lg font-medium">Parteneri</h3>
                                 <div>
                                     {
-                                        restaurantPartners['partners'].map((partner, index) => (
+                                        partners.map((partner, index) => (
                                             partner.name
                                         ))
                                     }

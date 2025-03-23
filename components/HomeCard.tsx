@@ -7,15 +7,16 @@ import Link from 'next/link';
 
 interface HomeCardProps {
     restaurantId: number;
-    title: string;
+    name: string;
     location: string;
     startingPrice: number;
     imageList: any[];
     rating: number;
-    capacity?: string;
+    minCapacity: number;
+    maxCapacity: number;
 }
 
-export default function HomeCard({ restaurantId, title, location, startingPrice, imageList, rating, capacity }: HomeCardProps) {
+export default function HomeCard({ restaurantId, name, location, startingPrice, imageList, rating, minCapacity, maxCapacity }: HomeCardProps) {
     const [liked, setLiked] = useState(false);
     const [currentImage, setCurrentImage] = useState(0);
 
@@ -46,7 +47,7 @@ export default function HomeCard({ restaurantId, title, location, startingPrice,
     return (
         <div className="w-full rounded-lg overflow-hidden relative group">
                 <div className="relative">
-                    <Link href={{pathname: "/client", query: {restaurantId: restaurantId, title: title, rating: rating, location: location}}}>
+                    <Link href={{pathname: "/client", query: {restaurantId: restaurantId, name: name, rating: rating, location: location}}}>
                         <Image src={imageList[currentImage]} alt="Example Image"/>
                     </Link>
                     <div
@@ -85,13 +86,10 @@ export default function HomeCard({ restaurantId, title, location, startingPrice,
                     </div>
                 </div>
             <div className="flex flex-col justify-center p-2 flex-grow">
-                <h3 className="text-lg font-bold mb-1">{title}</h3>
+                <h3 className="text-lg font-bold mb-1">{name}</h3>
                 <p>Locatie: {location}</p>
                 <p className="font-bold flex items-center">De la: {startingPrice} <FaEuroSign/></p>
-                {
-                capacity &&
-                    <p>Capacitate: {capacity} persoane</p>
-                }
+                <p>Capacitate: {minCapacity} - {maxCapacity} persoane</p>
             </div>
         </div>
     )

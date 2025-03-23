@@ -8,41 +8,41 @@ import Link from "next/link";
 import React, {useState} from "react";
 import {useDisclosure} from "@heroui/react";
 import AddPartnerModal from "@/components/modals/AddPartnerModal";
+import Partner from "@/types/partner";
+import Venue from "@/types/venue";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
-interface Partner {
-    id: number;
-    name: string;
-}
+const imageList = [exampleImage1, exampleImage2, exampleImage1, exampleImage2, exampleImage1, exampleImage1, exampleImage1, exampleImage1, exampleImage1, exampleImage1, exampleImage1, exampleImage1]
 
-interface ServicesPageProps {
-    restaurantId: number;
-}
-
-const ServicesPage: React.FC<ServicesPageProps> = ({restaurantId}) => {
+const ServicesPage = ({restaurants}: {restaurants: Venue[]}) => {
     const cards = [
         {
-            title: "Example1",
+            name: "Example1",
             location: "Bucuresti",
             startingPrice: 60,
             imageList: [exampleImage1, exampleImage2, exampleImage1, exampleImage2, exampleImage1, exampleImage1, exampleImage1, exampleImage1, exampleImage1, exampleImage1, exampleImage1, exampleImage1],
             rating: 5,
-            capacity: "100-200"
+            minCapacity: 100,
+            maxCapacity: 200
         },
         {
-            title: "Example2",
+            name: "Example2",
             location: "Bucuresti",
             startingPrice: 50,
             imageList: [exampleImage1, exampleImage2],
-            rating: 4.5
+            rating: 4.5,
+            minCapacity: 150,
+            maxCapacity: 300
         },
         {
-            title: "Example3",
+            name: "Example3",
             location: "Bucuresti",
             startingPrice: 30,
             imageList: [exampleImage1, exampleImage2],
-            rating: 3.5
+            rating: 3.5,
+            minCapacity: 200,
+            maxCapacity: 400
         }
     ]
 
@@ -98,11 +98,12 @@ const ServicesPage: React.FC<ServicesPageProps> = ({restaurantId}) => {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-10">
                 {
-                    cards.map((card, index) => (
+                    restaurants.map((card, index) => (
                         <div key={index}>
-                            <HomeCard title={card.title} location={card.location}
-                                      startingPrice={card.startingPrice} imageList={card.imageList} rating={card.rating}
-                                      capacity={card?.capacity} restaurantId={restaurantId}/>
+                            <HomeCard name={card.name} location={card.city} restaurantId={card.restaurant_id}
+                                      startingPrice={card.price} imageList={imageList} rating={card.rating}
+                                      minCapacity={card.minCapacity} maxCapacity={card.maxCapacity}/>
+
                             <Link className="bg-[#5C8171] text-white px-6 py-2 rounded mb-5"
                                   href={"/admin/services/account-details"}>
                                 Editeaza

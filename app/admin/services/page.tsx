@@ -1,10 +1,13 @@
 import React from "react";
-import ServicePage from "@/app/admin/services/ServicesPage";
+import ServicesPage from "@/app/admin/services/ServicesPage";
+import {getRestaurants} from "@/lib/api";
 
 const Service = async () => {
 
+    const restaurants = await getRestaurants();
+
     return (
-        <ServicePage restaurantId={6} />
+        <ServicesPage restaurants={restaurants} />
     );
 }
 
