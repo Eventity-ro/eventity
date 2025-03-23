@@ -21,7 +21,7 @@ const LoginForm: React.FC = () => {
     };
 
     return (
-        <form className="rounded pt-6 pb-8 mb-4 bg-white" onSubmit={handleSubmit}>
+        <form className="w-full rounded pt-6 pb-8 mb-4" onSubmit={handleSubmit}>
             <div className="flex flex-col gap-2">
                 <p className="mb-2 text-neutral-700 text-2xl font-semibold">Intra in cont</p>
                 <FormTextInput

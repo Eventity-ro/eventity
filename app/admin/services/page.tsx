@@ -2,7 +2,7 @@ import React from "react";
 import ServicesPage from "@/app/admin/services/ServicesPage";
 import {getRestaurants} from "@/lib/api";
 
-const Services = async () => {
+const Service = async () => {
 
     const restaurants = await getRestaurants();
 
@@ -11,4 +11,4 @@ const Services = async () => {
     );
 }
 
-export default Services;
+export default Service;

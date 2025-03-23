@@ -103,8 +103,9 @@ const ServicesPage = ({restaurants}: {restaurants: Venue[]}) => {
                             <HomeCard name={card.name} location={card.city} restaurantId={card.restaurant_id}
                                       startingPrice={card.price} imageList={imageList} rating={card.rating}
                                       minCapacity={card.minCapacity} maxCapacity={card.maxCapacity}/>
+
                             <Link className="bg-[#5C8171] text-white px-6 py-2 rounded mb-5"
-                                  href={"/admin/services/details"}>
+                                  href={"/admin/services/account-details"}>
                                 Editeaza
                             </Link>
                         </div>
