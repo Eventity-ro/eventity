@@ -12,10 +12,11 @@ interface HomeCardProps {
     startingPrice: number;
     imageList: any[];
     rating: number;
-    capacity?: string;
+    minCapacity: number;
+    maxCapacity: number;
 }
 
-export default function HomeCard({ restaurantId, title, location, startingPrice, imageList, rating, capacity }: HomeCardProps) {
+export default function HomeCard({ restaurantId, title, location, startingPrice, imageList, rating, minCapacity, maxCapacity }: HomeCardProps) {
     const [liked, setLiked] = useState(false);
     const [currentImage, setCurrentImage] = useState(0);
 
@@ -88,10 +89,7 @@ export default function HomeCard({ restaurantId, title, location, startingPrice,
                 <h3 className="text-lg font-bold mb-1">{title}</h3>
                 <p>Locatie: {location}</p>
                 <p className="font-bold flex items-center">De la: {startingPrice} <FaEuroSign/></p>
-                {
-                capacity &&
-                    <p>Capacitate: {capacity} persoane</p>
-                }
+                <p>Capacitate: {minCapacity} - {maxCapacity} persoane</p>
             </div>
         </div>
     )
