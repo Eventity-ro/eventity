@@ -127,7 +127,7 @@ export default function HomePage({initialData}: {initialData: Venue[]}) {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 ">
                 {
                     displayData.map((card, index) => (
-                        <HomeCard key={index} restaurantId={card.restaurant_id} title={card.name} location={card.city} startingPrice={card.price} imageList={imageList} rating={card.rating} minCapacity={card.minCapacity} maxCapacity={card.maxCapacity}/>
+                        <HomeCard key={index} restaurantId={card.restaurant_id} name={card.name} location={card.city} startingPrice={card.price} imageList={imageList} rating={card.rating} minCapacity={card.minCapacity} maxCapacity={card.maxCapacity}/>
                     ))
                 }
             </div>

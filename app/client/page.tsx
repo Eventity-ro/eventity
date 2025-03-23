@@ -1,7 +1,7 @@
 import {getPartners} from "@/lib/api";
 import ClientPage from "@/app/client/ClientPage";
 
-const Client = async ({ searchParams }) => {
+const Client = async ({ searchParams }: {searchParams: {restaurantId: number}}) => {
 
     const restaurantId = searchParams.restaurantId;
 
