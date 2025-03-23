@@ -17,11 +17,7 @@ const NewOtherForm = () => {
         <div className="w-full mx-auto mt-8 bg-white p-6 rounded-lg shadow-md">
             <h2 className="text-xl font-bold mb-4">Generale</h2>
 
-            {/* Information */}
             <div className="w-full">
-
-                {/* Price */}
-                <div>
                     <FormTextInput
                         label="Pret incepand de la/ meniu (lei)"
                         type="number"
@@ -29,7 +25,6 @@ const NewOtherForm = () => {
                         edit={true}
                         onChange={handleStartPriceChange}
                     />
-                </div>
             </div>
 
             <div className="w-full mt-4">
@@ -37,13 +32,9 @@ const NewOtherForm = () => {
             </div>
 
             {/* Submit Button */}
-            <div className="mt-20 flex justify-end gap-2">
-                <div className="w-1/2">
-                    <FormButton label='Inapoi' darkMode={false} onClick={() => console.log('Inapoi')}/>
-                </div>
-                <div className="w-1/2">
-                    <FormButton label='Urmatorul pas' darkMode={true} onClick={() => console.log('Urmatorul pas')}/>
-                </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                <FormButton label='Inapoi' darkMode={false} onClick={() => console.log('Inapoi')}/>
+                <FormButton label='Urmatorul pas' darkMode={true} onClick={() => console.log('Urmatorul pas')}/>
             </div>
         </div>
     );

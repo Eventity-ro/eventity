@@ -5,21 +5,30 @@ import FormTextInput from "@/components/FormTextInput";
 import ImageUploadComponent from "@/components/forms/ImageUploadComponent";
 import Link from "next/link";
 import {useSearchParams} from "next/navigation";
+import FormButton from "@/components/FormButton";
 
-const NewVenueForm = () => {
-
-    const searchParams = useSearchParams();
-
-    const name = searchParams.get('name');
+interface NewVenueFormProps {
+    onBack: () => void,
+    onSubmit: () => void;
+}
+const NewVenueForm: React.FC<NewVenueFormProps> = ({onBack, onSubmit}) => {
 
     const [venueCapacity, setVenueCapacity] = useState(250);
     const [menuStartPrice, setMenuStartPrice] = useState(200);
 
-    const sendDict = {
-        name: name,
-        capacity: venueCapacity,
-        price: menuStartPrice
-    }
+
+    const validateFormFields = () => {
+        return venueCapacity > 0 && menuStartPrice > 0;
+    };
+
+    const handleSubmit = () => {
+        const isValid = validateFormFields();
+        if (isValid) {
+            onSubmit();
+        } else {
+            alert("Capacitatea sala si pretul de start al meniului trebuie sa fie mai mare decat 0.");
+        }
+    };
 
     const handleVenueCapacityChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         setVenueCapacity(Number(e.target.value));
@@ -30,13 +39,13 @@ const NewVenueForm = () => {
     }, []);
 
     return (
-        <div className="w-full mx-auto mt-8 bg-white p-6 rounded-lg shadow-md">
+        <div className="w-full mx-auto mt-8 bg-white p-6 rounded-lg shadow-2xl">
             <h2 className="text-xl font-bold mb-4">Generale</h2>
 
             {/* Venue Information */}
-            <div className="grid grid-cols-2 gap-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 {/* Venue capacity */}
-                <div>
+
                     <FormTextInput
                         label="Capacitate sala"
                         type="number"
@@ -44,10 +53,8 @@ const NewVenueForm = () => {
                         edit={true}
                         onChange={handleVenueCapacityChange}
                     />
-                </div>
 
                 {/* Venue price */}
-                <div>
                     <FormTextInput
                         label="Pret incepand de la/ meniu (lei)"
                         type="number"
@@ -55,7 +62,6 @@ const NewVenueForm = () => {
                         edit={true}
                         onChange={handleMenuPriceChange}
                     />
-                </div>
             </div>
 
             <div className="w-full mt-4">
@@ -63,19 +69,9 @@ const NewVenueForm = () => {
             </div>
 
             {/* Submit Button */}
-            <div className="mt-20 flex justify-end gap-2">
-                <div className="w-1/2">
-                    {/*<FormButton label='Inapoi' darkMode={false} onClick={() => console.log('Inapoi')}/>*/}
-                    <Link className="bg-[#5C8171] text-white px-6 py-2 rounded mb-5" href={"/admin/services/new"}>
-                        Inapoi
-                    </Link>
-                </div>
-                <div className="w-1/2">
-                    {/*<FormButton label='Urmatorul pas' darkMode={true} onClick={() => console.log('Urmatorul pas')}/>*/}
-                    <Link className="bg-[#5C8171] text-white px-6 py-2 rounded mb-5" href={{pathname: "/admin/services/new/details", query: sendDict}}>
-                        Urmatorul Pas
-                    </Link>
-                </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                <FormButton label='Inapoi' darkMode={false} onClick={onBack}/>
+                <FormButton label='Urmatorul pas' darkMode={true} onClick={handleSubmit}/>
             </div>
         </div>
     );

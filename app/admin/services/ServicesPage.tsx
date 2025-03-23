@@ -8,11 +8,19 @@ import Link from "next/link";
 import React, {useState} from "react";
 import {useDisclosure} from "@heroui/react";
 import AddPartnerModal from "@/components/modals/AddPartnerModal";
-import {revalidatePath} from "next/cache";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
-const ServicesPage = (restaurantId) => {
+interface Partner {
+    id: number;
+    name: string;
+}
+
+interface ServicesPageProps {
+    restaurantId: number;
+}
+
+const ServicesPage: React.FC<ServicesPageProps> = ({restaurantId}) => {
     const cards = [
         {
             title: "Example1",
@@ -94,9 +102,9 @@ const ServicesPage = (restaurantId) => {
                         <div key={index}>
                             <HomeCard title={card.title} location={card.location}
                                       startingPrice={card.startingPrice} imageList={card.imageList} rating={card.rating}
-                                      capacity={card?.capacity}/>
+                                      capacity={card?.capacity} restaurantId={restaurantId}/>
                             <Link className="bg-[#5C8171] text-white px-6 py-2 rounded mb-5"
-                                  href={"/admin/services/details"}>
+                                  href={"/admin/services/account-details"}>
                                 Editeaza
                             </Link>
                         </div>
