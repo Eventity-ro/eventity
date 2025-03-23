@@ -23,19 +23,17 @@ const cities = (judet: string) => {
 }
 
 const FilterModal: React.FC<FiltersModalProps> = ({ isOpen, onOpenChange, setFilters }) => {
-    if (!isOpen) return null;
+    const [minCapacity, setMinCapacity] = useState<number>()
+    const [maxCapacity, setMaxCapacity] = useState<number>()
+    const [city, setCity] = useState<string>('')
+    const [judet, setJudet] = useState<string>('')
 
-    const [minCapacity, setMinCapacity] = useState(null)
-    const [maxCapacity, setMaxCapacity] = useState(null)
-    const [city, setCity] = useState('')
-    const [judet, setJudet] = useState('')
-
-    const handleJudetSelect = (newJudet) => {
-        setJudet(newJudet.target.value);
+    const handleJudetSelect = (newJudet: string) => {
+        setJudet(newJudet);
     };
 
-    const handleCitySelect = (newCity) => {
-        setCity(newCity.target.value);
+    const handleCitySelect = (newCity: string) => {
+        setCity(newCity);
     };
 
     return (
@@ -80,7 +78,7 @@ const FilterModal: React.FC<FiltersModalProps> = ({ isOpen, onOpenChange, setFil
                                             <Select
                                                 className="max-w-xs"
                                                 label="Selecteaza Judet"
-                                                onChange={handleJudetSelect}>
+                                                onChange={(event) => handleJudetSelect(event.target.value)}>
                                                 {judete.map((judet) => (
                                                     <SelectItem key={judet.key}>{judet.label}</SelectItem>
                                                 ))}
@@ -88,7 +86,7 @@ const FilterModal: React.FC<FiltersModalProps> = ({ isOpen, onOpenChange, setFil
                                             <Select
                                                 className="max-w-xs"
                                                 label="Selecteaza Oras"
-                                                onChange={handleCitySelect}
+                                                onChange={(event) => handleCitySelect(event.target.value)}
                                             >
                                                 {cities(judet).map((city) => (
                                                     <SelectItem key={city.key}>{city.label}</SelectItem>
