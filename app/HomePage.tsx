@@ -9,21 +9,28 @@ import {
 } from "@heroui/react";
 import FilterModal from "@/components/modals/FilterModal";
 import {useEffect, useState} from "react";
+import Venue from "@/types/venue"
 
-export default function HomePage({initialData}) {
+interface Filters {
+    city?: string;
+    min_capacity?: number;
+    max_capacity?: number;
+}
+
+export default function HomePage({initialData}: {initialData: Venue[]}) {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
 
-    const [data, setData] = useState(initialData)
+    const [data, setData] = useState<Venue[]>(initialData)
 
-    const [filteredData, setFilteredData] = useState([])
+    const [filteredData, setFilteredData] = useState<Venue[]>([])
 
     const [filtersApplied, setFiltersApplied] = useState(false)
 
-    const [filters, setFilters] = useState({})
+    const [filters, setFilters] = useState<Filters>({})
 
     const imageList = [exampleImage1, exampleImage2, exampleImage1, exampleImage2, exampleImage1, exampleImage1, exampleImage1, exampleImage1, exampleImage1, exampleImage1, exampleImage1, exampleImage1]
 
-    const filterData = (filters, restaurants) => {
+    const filterData = (filters: Filters, restaurants: Venue[]) => {
         return restaurants.filter(restaurant => {
             // Check city if provided
             if (filters.city && restaurant.city !== filters.city) {
@@ -36,8 +43,8 @@ export default function HomePage({initialData}) {
                 // The restaurant should allow a group of size filters.min_capacity,
                 // meaning: restaurant.min_capacity <= filters.min_capacity <= restaurant.max_capacity
                 if (
-                    filters.min_capacity < restaurant.min_capacity ||
-                    filters.min_capacity > restaurant.max_capacity
+                    filters.min_capacity < restaurant.minCapacity ||
+                    filters.min_capacity > restaurant.maxCapacity
                 ) {
                     return false;
                 }
@@ -49,8 +56,8 @@ export default function HomePage({initialData}) {
                 // The restaurant should allow a group of size filters.max_capacity,
                 // meaning: restaurant.min_capacity <= filters.max_capacity <= restaurant.max_capacity
                 if (
-                    filters.max_capacity < restaurant.min_capacity ||
-                    filters.max_capacity > restaurant.max_capacity
+                    filters.max_capacity < restaurant.minCapacity ||
+                    filters.max_capacity > restaurant.maxCapacity
                 ) {
                     return false;
                 }
@@ -120,7 +127,7 @@ export default function HomePage({initialData}) {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 ">
                 {
                     displayData.map((card, index) => (
-                        <HomeCard key={index} restaurantId={card.restaurant_id} title={card.name} location={card.city} startingPrice={card.price} imageList={imageList} rating={card.rating} capacity={card?.capacity}/>
+                        <HomeCard key={index} restaurantId={card.restaurant_id} title={card.name} location={card.city} startingPrice={card.price} imageList={imageList} rating={card.rating} minCapacity={card.minCapacity} maxCapacity={card.maxCapacity}/>
                     ))
                 }
             </div>
