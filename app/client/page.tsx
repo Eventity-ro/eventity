@@ -1,14 +1,11 @@
-import {getPartners} from "@/lib/api";
+import { getPartners } from "@/lib/api";
 import ClientPage from "@/app/client/ClientPage";
 
-interface Props {
-    searchParams?: {
-        restaurantId?: string;
-    };
-}
-
-const Client = async ({ searchParams }: Props) => {
-
+const Client = async ({
+                          searchParams,
+                      }: {
+    searchParams: { restaurantId?: string };
+}) => {
     const restaurantId = searchParams?.restaurantId;
 
     if (!restaurantId) {
@@ -17,9 +14,7 @@ const Client = async ({ searchParams }: Props) => {
 
     const partners = await getPartners(restaurantId);
 
-    return (
-        <ClientPage partners={partners}/>
-    );
+    return <ClientPage partners={partners} />;
 };
 
 export default Client;
