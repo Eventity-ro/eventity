@@ -8,6 +8,7 @@ import logo from "@/images/logo.svg"
 import Image from "next/image";
 import { usePathname } from 'next/navigation'
 import Link from 'next/link';
+import MobileSearchBar from "@/components/MobileSearchBar";
 
 export default function Header() {
 
@@ -57,28 +58,46 @@ export default function Header() {
 const header = () => {
     return (
         <div
-            className="flex flex-col lg:flex-row justify-between items-center gap-4 lg:gap-[20%] pt-4 pb-2 px-4 lg:px-12"
+            className="w-full"
         >
-            <Link href='/'>
-                <Image src={logo} alt="logo" width={100} height={100}/>
-            </Link>
+            <div className="flex flex-col py-4 lg:hidden w-full items-center gap-2">
+                <div className="flex flex-row justify-center items-center gap-4 w-full">
+                    <Link href="/">
+                        <Image src={logo} alt="logo" width={150} height={100}/>
+                    </Link>
+                    <MobileSearchBar/>
+                </div>
+
+                <div className="flex flex-row justify-center items-center gap-4 w-full">
+                    <AppButton title="Devino client"/>
+                    <ProfileButton/>
+                </div>
+            </div>
+
+            <div className="hidden lg:flex flex-row justify-between items-center gap-[20%] pt-4 pb-2 px-12">
+                <Link href="/">
+                    <Image src={logo} alt="logo" width={150} height={100}/>
+                </Link>
+
                 <SearchBar/>
+
                 <div className="flex items-center gap-2">
                     <AppButton title="Devino client"/>
                     <ProfileButton/>
                 </div>
             </div>
-        )
-    }
+        </div>
+    )
+}
 
-     return (
-         <div className='shadow-md'>
-             {
-                 pathName.includes('admin') ?
-                     adminHeader() :
-                     header()
-             }
-             <hr/>
-         </div>
-     );
+    return (
+        <div className='shadow-md'>
+            {
+                pathName.includes('admin') ?
+                    adminHeader() :
+                    header()
+            }
+            <hr/>
+        </div>
+    );
 }

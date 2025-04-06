@@ -34,7 +34,7 @@ export async function getRestaurants(): Promise<Venue[]> {
     }));
 }
 
-export async function getPartners(restaurantId: number): Promise<Partner[]> {
+export async function getPartners(restaurantId: string): Promise<Partner[]> {
     const result = await sql`
         SELECT 
             p.id,
