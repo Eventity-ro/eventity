@@ -14,7 +14,7 @@ const FormDropdownComponent: React.FC<FormDropdownProps> = ({ label, options}) =
             name="service"
             className="w-full h-12 py-2 px-2 border border-gray-300 rounded-md focus:outline-none sm:text-sm"
         >
-            <option value="" disabled selected hidden>{label}</option>
+            <option value="" disabled hidden>{label}</option>
             {options.map(
                 (option, index) => <option key={index} value={option}>{option}</option>
             )}

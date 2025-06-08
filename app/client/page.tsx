@@ -4,9 +4,9 @@ import ClientPage from "@/app/client/ClientPage";
 const Client = async ({
                           searchParams,
                       }: {
-    searchParams: { restaurantId?: string };
+    searchParams: Promise<{ [key: string]: string }>
 }) => {
-    const restaurantId = searchParams?.restaurantId;
+    const {restaurantId} = await searchParams;
 
     if (!restaurantId) {
         return <div>No restaurant selected.</div>;

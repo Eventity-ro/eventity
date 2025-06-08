@@ -16,35 +16,6 @@ const fetcher = (url: string) => fetch(url).then((res) => res.json());
 const imageList = [exampleImage1, exampleImage2, exampleImage1, exampleImage2, exampleImage1, exampleImage1, exampleImage1, exampleImage1, exampleImage1, exampleImage1, exampleImage1, exampleImage1]
 
 const ServicesPage = ({restaurants}: {restaurants: Venue[]}) => {
-    const cards = [
-        {
-            name: "Example1",
-            location: "Bucuresti",
-            startingPrice: 60,
-            imageList: [exampleImage1, exampleImage2, exampleImage1, exampleImage2, exampleImage1, exampleImage1, exampleImage1, exampleImage1, exampleImage1, exampleImage1, exampleImage1, exampleImage1],
-            rating: 5,
-            minCapacity: 100,
-            maxCapacity: 200
-        },
-        {
-            name: "Example2",
-            location: "Bucuresti",
-            startingPrice: 50,
-            imageList: [exampleImage1, exampleImage2],
-            rating: 4.5,
-            minCapacity: 150,
-            maxCapacity: 300
-        },
-        {
-            name: "Example3",
-            location: "Bucuresti",
-            startingPrice: 30,
-            imageList: [exampleImage1, exampleImage2],
-            rating: 3.5,
-            minCapacity: 200,
-            maxCapacity: 400
-        }
-    ]
 
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
 
