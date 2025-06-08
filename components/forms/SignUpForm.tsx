@@ -3,11 +3,14 @@
 import React, { useState, useCallback } from 'react';
 import FormTextInput from '../FormTextInput';
 import FormButton from "@/components/FormButton";
+import {useRouter} from "next/navigation";
+import {signIn} from "next-auth/react";
 
 const SignUpForm: React.FC = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [password2, setPassword2] = useState('');
+    const router = useRouter();
 
     const handleEmailChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         setEmail(e.target.value);
@@ -21,8 +24,35 @@ const SignUpForm: React.FC = () => {
         setPassword2(e.target.value);
     }, []);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+
+        if (password !== password2) {
+            alert("Parolele nu se potrivesc.");
+            return;
+        }
+
+        const res = await fetch("api/auth/register", {
+            method: "POST",
+            body: JSON.stringify({email, password}),
+            headers: {"Content-Type": "application/json"},
+        });
+
+        if (res.ok) {
+            // Auto login after signup
+            const result = await signIn("credentials", {
+                email,
+                password,
+                redirect: false,
+            });
+
+            if (result?.ok) {
+                router.push("/"); // Or wherever you want
+            }
+        } else {
+            const data = await res.json();
+            alert(data.error || "Eroare la înregistrare");
+        }
     };
 
     return (
@@ -47,7 +77,7 @@ const SignUpForm: React.FC = () => {
                     value={password2}
                     onChange={handlePassword2Change}
                 />
-                <FormButton label={'Creeaza cont'} onClick={() => console.log('Creeaza cont')}/>
+                <FormButton label={'Creeaza cont'} onClick={() => {}}/>
             </div>
         </form>
 );

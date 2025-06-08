@@ -3,10 +3,13 @@
 import React, { useState, useCallback } from 'react';
 import FormTextInput from '../FormTextInput';
 import FormButton from "@/components/FormButton";
+import {signIn} from "next-auth/react";
+import { useRouter } from 'next/navigation';
 
 const LoginForm: React.FC = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const router = useRouter();
 
     const handleEmailChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         setEmail(e.target.value);
@@ -16,8 +19,21 @@ const LoginForm: React.FC = () => {
         setPassword(e.target.value);
     }, []);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+
+        const result = await signIn("credentials", {
+            email,
+            password,
+            redirect: false,
+            callbackUrl: "/"
+        });
+
+        if (result?.ok) {
+            router.push("/"); // Redirecționează către homepage
+        } else {
+            alert("Email sau parolă incorectă");
+        }
     };
 
     return (
@@ -38,7 +54,7 @@ const LoginForm: React.FC = () => {
                     edit={true}
                     onChange={handlePasswordChange}
                 />
-                <FormButton label={'Continua'} onClick={() => console.log('Continua')}/>
+                <FormButton label={'Continua'} onClick={() => {}}/>
             </div>
         </form>
 );
