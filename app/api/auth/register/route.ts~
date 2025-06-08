@@ -20,7 +20,7 @@ export async function POST(req: Request) {
 
         await sql`
       INSERT INTO "user" ("name", "email", "password")
-      VALUES (${name}, ${email}, ${hashed})
+      VALUES (${email}, ${hashed})
     `;
 
         return NextResponse.json({ success: true }, { status: 201 });

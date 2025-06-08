@@ -1,5 +1,5 @@
 import { sql } from '@vercel/postgres';
-import HomePage from "@/app/HomePage";
+import HomePage from "@/app/(public)/HomePage";
 import {getRestaurants} from "@/lib/api";
 
 export default async function Home() {
