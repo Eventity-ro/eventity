@@ -1,6 +1,6 @@
 import React from "react";
+import ServicesPage from "@/app/admin/services/ServicesPage";
 import {getRestaurants} from "@/lib/api";
-import ServicesPage from "@/app/(protected)/admin/services/ServicesPage";
 
 const Service = async () => {
 
