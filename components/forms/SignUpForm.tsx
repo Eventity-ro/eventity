@@ -7,10 +7,15 @@ import {useRouter} from "next/navigation";
 import {signIn} from "next-auth/react";
 
 const SignUpForm: React.FC = () => {
+    const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [password2, setPassword2] = useState('');
     const router = useRouter();
+
+    const handleNameChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+        setName(e.target.value);
+    }, []);
 
     const handleEmailChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         setEmail(e.target.value);
@@ -34,7 +39,7 @@ const SignUpForm: React.FC = () => {
 
         const res = await fetch("api/auth/register", {
             method: "POST",
-            body: JSON.stringify({email, password}),
+            body: JSON.stringify({name, email, password}),
             headers: {"Content-Type": "application/json"},
         });
 
@@ -58,7 +63,13 @@ const SignUpForm: React.FC = () => {
     return (
         <form className="rounded pt-6 pb-8 mb-4" onSubmit={handleSubmit}>
             <div className="flex flex-col gap-2">
-                <div className="mb-2 text-neutral-700 text-2xl font-semibold">Creeaza un cont nou</div>
+                <div className="mb-2 text-neutral-700 text-2xl font-semibold">Creeaza cont</div>
+                <FormTextInput
+                    label="Nume Prenume"
+                    type="name"
+                    value={name}
+                    onChange={handleNameChange}
+                />
                 <FormTextInput
                     label="E-mail"
                     type="email"

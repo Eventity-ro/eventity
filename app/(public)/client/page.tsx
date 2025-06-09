@@ -1,5 +1,5 @@
 import { getPartners } from "@/lib/api";
-import ClientPage from "@/app/client/ClientPage";
+import ClientPage from "@/app/(public)/client/ClientPage";
 
 const Client = async ({
                           searchParams,

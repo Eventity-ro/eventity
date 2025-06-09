@@ -45,7 +45,7 @@ const AccountDetailsForm: React.FC = () => {
         });
 
         if (res.ok) {
-            setEdit(false);
+            setEdit(false); // Salvat cu succes
         } else {
             alert('A apărut o eroare la salvare.');
         }
@@ -57,7 +57,7 @@ const AccountDetailsForm: React.FC = () => {
             <div className="flex w-full h-20 items-center pb-10">
                 <Image src={logo} alt="Profile image" className="h-20 w-20 rounded-full"/>
                 <div className="flex flex-col pl-2">
-                    <span>{name}</span>
+                    <span>Maria Popescu</span>
                     <span className="text-gray-400 text-xs">Schimba imaginea de profil</span>
                 </div>
             </div>
