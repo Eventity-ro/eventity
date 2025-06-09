@@ -5,7 +5,7 @@ import FacebookProvider from "next-auth/providers/facebook";
 import { sql } from "@vercel/postgres";
 import bcrypt from "bcrypt";
 
-export const authOptions: AuthOptions = {
+const authOptions: AuthOptions = {
     providers: [
         CredentialsProvider({
             name: "Credentials",
@@ -97,3 +97,4 @@ export const authOptions: AuthOptions = {
 
 const handler = NextAuth(authOptions);
 export { handler as GET, handler as POST };
+export {authOptions};
