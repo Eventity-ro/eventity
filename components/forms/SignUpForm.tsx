@@ -63,7 +63,7 @@ const SignUpForm: React.FC = () => {
     return (
         <form className="rounded pt-6 pb-8 mb-4" onSubmit={handleSubmit}>
             <div className="flex flex-col gap-2">
-                <div className="mb-2 text-neutral-700 text-2xl font-semibold">Creeaza un cont nou</div>
+                <div className="mb-2 text-neutral-700 text-2xl font-semibold">Creeaza cont</div>
                 <FormTextInput
                     label="Nume Prenume"
                     type="name"

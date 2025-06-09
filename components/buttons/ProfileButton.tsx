@@ -38,15 +38,16 @@ export default function ProfileButton() {
                 <div
                     className="absolute right-0 mt-2 w-60 bg-white shadow-xl rounded-2xl overflow-hidden border border-gray-200 z-50">
                     <div className="flex flex-col divide-y divide-gray-200 text-sm font-medium">
-                        <Link href="/favorites" className="flex items-center gap-2 px-4 py-3 hover:bg-gray-100">
-                            <FiHeart className="text-lg"/> Favorite
-                        </Link>
-                        <Link href="/news" className="flex items-center gap-2 px-4 py-3 hover:bg-gray-100">
-                            <FiList className="text-lg"/> Noutăți
-                        </Link>
-                        <Link href="/account-details" className="flex items-center gap-2 px-4 py-3 hover:bg-gray-100">
-                            <FiSettings className="text-lg"/> Setări profil
-                        </Link>
+                        {session ? (
+                            <>
+                                <Link href="/favorites" className="flex items-center gap-2 px-4 py-3 hover:bg-gray-100">
+                                    <FiHeart className="text-lg"/> Favorite
+                                </Link>
+                                <Link href="/account-details" className="flex items-center gap-2 px-4 py-3 hover:bg-gray-100">
+                                    <FiSettings className="text-lg"/> Setări profil
+                                </Link>
+                            </>
+                        ) : null}
                         <div className="px-4 py-3 text-gray-700">Despre noi</div>
                         <div className="px-4 py-3 text-gray-700">Termeni și condiții</div>
 
