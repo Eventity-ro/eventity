@@ -1,11 +1,11 @@
-import NextAuth, {AuthOptions} from "next-auth";
+import {AuthOptions} from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import {sql} from "@vercel/postgres";
+import bcrypt from "bcrypt";
 import GoogleProvider from "next-auth/providers/google";
 import FacebookProvider from "next-auth/providers/facebook";
-import { sql } from "@vercel/postgres";
-import bcrypt from "bcrypt";
 
-const handler = NextAuth({
+export const authOptions: AuthOptions = {
     providers: [
         CredentialsProvider({
             name: "Credentials",
@@ -93,7 +93,4 @@ const handler = NextAuth({
             return session;
         },
     },
-});
-
-export { handler as GET, handler as POST };
-export { handler };
+};
