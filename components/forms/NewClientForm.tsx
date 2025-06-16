@@ -6,7 +6,7 @@ import FormDropdownComponent from "@/components/FormDropdownComponent";
 import FormButton from "@/components/FormButton";
 
 interface NewClientFormProps {
-    onSubmit: () => void;
+    onSubmit: ({}) => void;
     onSubmitButtonText?: string;
 }
 const NewClientForm: React.FC<NewClientFormProps> = ({onSubmit, onSubmitButtonText = "Urmatorul pas"}) => {
@@ -35,7 +35,7 @@ const NewClientForm: React.FC<NewClientFormProps> = ({onSubmit, onSubmitButtonTe
     const handleSubmit = () => {
         const isValid = validateFormFields();
         if (isValid) {
-            onSubmit();
+            onSubmit({clientName: clientName, phoneNumber: clientPhoneNumber, email: clientEmail, instagram: clientInstagram, facebook: clientFacebook});
         } else {
             alert("Please complete all required fields.");
         }
