@@ -13,12 +13,6 @@ const NewAdminForm: React.FC<NewAdminFormProps> = ({onSubmitButtonText = "Urmato
 
     const router = useRouter();
 
-    const [clientName, setClientName] = useState('Restaurant Venus');
-    const [clientPhoneNumber, setClientPhoneNumber] = useState('0755123456');
-    const [clientEmail, setClientEmail] = useState('venus@contact.com');
-    const [clientInstagram, setClientInstagram] = useState('@restaurantvenus');
-    const [clientFacebook, setClientFacebook] = useState('restaurantvenus');
-
     const options = [
         'Sala nunti',
         'Fotograf',
@@ -26,12 +20,18 @@ const NewAdminForm: React.FC<NewAdminFormProps> = ({onSubmitButtonText = "Urmato
         'Barman',
     ];
 
+    const [serviceType, setServiceType] = useState(options[0]);
+    const [clientName, setClientName] = useState('Restaurant Venus');
+    const [clientPhoneNumber, setClientPhoneNumber] = useState('0755123456');
+    const [clientEmail, setClientEmail] = useState('venus@contact.com');
+    const [clientInstagram, setClientInstagram] = useState('@restaurantvenus');
+    const [clientFacebook, setClientFacebook] = useState('restaurantvenus');
+
     const validateFormFields = () => {
-        return clientName.trim() !== '' &&
+        return serviceType !== null &&
+            clientName.trim() !== '' &&
             clientPhoneNumber.trim() !== '' &&
-            clientEmail.trim() !== '' &&
-            clientInstagram.trim() !== '' &&
-            clientFacebook.trim() !== '';
+            clientEmail.trim() !== '';
     };
 
     const handleSubmit = async () => {
@@ -42,7 +42,7 @@ const NewAdminForm: React.FC<NewAdminFormProps> = ({onSubmitButtonText = "Urmato
         }
 
         const payload = {
-            type: 'Venue', // trebuie să iei valoarea din dropdown
+            type: serviceType, // trebuie să iei valoarea din dropdown
             name: clientName,
             phone: clientPhoneNumber,
             email: clientEmail,
@@ -97,27 +97,32 @@ const NewAdminForm: React.FC<NewAdminFormProps> = ({onSubmitButtonText = "Urmato
 
             {/* Service selection */}
             <div className="mb-2">
-                <FormDropdownComponent label='Alege serviciul oferit' options={options}/>
+                <FormDropdownComponent
+                    label="Alege serviciul oferit *"
+                    options={options}
+                    value={serviceType}
+                    onChange={(value) => setServiceType(value)}
+                />
             </div>
 
             {/* Client Information */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 <FormTextInput
-                    label="Denumire client"
+                    label="Denumire client *"
                     type="text"
                     value={clientName}
                     edit={true}
                     onChange={handleClientNameChange}
                 />
                 <FormTextInput
-                    label="Telefon"
+                    label="Telefon *"
                     type="phone"
                     value={clientPhoneNumber}
                     edit={true}
                     onChange={handleClientPhoneNumberChange}
                 />
                 <FormTextInput
-                    label="E-mail"
+                    label="E-mail *"
                     type="email"
                     value={clientEmail}
                     edit={true}
