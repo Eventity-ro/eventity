@@ -11,18 +11,19 @@ interface NewClientFormProps {
 }
 const NewClientForm: React.FC<NewClientFormProps> = ({onSubmit, onSubmitButtonText = "Urmatorul pas"}) => {
 
-    const [clientName, setClientName] = useState('Restaurant Venus');
-    const [clientPhoneNumber, setClientPhoneNumber] = useState('0755123456');
-    const [clientEmail, setClientEmail] = useState('venus@contact.com');
-    const [clientInstagram, setClientInstagram] = useState('@restaurantvenus');
-    const [clientFacebook, setClientFacebook] = useState('restaurantvenus');
-
     const options = [
         'Sala nunti',
         'Fotograf',
         'DJ',
         'Barman',
     ];
+
+    const [clientType, setClientType] = useState(options[0]);
+    const [clientName, setClientName] = useState('Restaurant Venus');
+    const [clientPhoneNumber, setClientPhoneNumber] = useState('0755123456');
+    const [clientEmail, setClientEmail] = useState('venus@contact.com');
+    const [clientInstagram, setClientInstagram] = useState('@restaurantvenus');
+    const [clientFacebook, setClientFacebook] = useState('restaurantvenus');
 
     const validateFormFields = () => {
         return clientName.trim() !== '' &&
@@ -67,7 +68,12 @@ const NewClientForm: React.FC<NewClientFormProps> = ({onSubmit, onSubmitButtonTe
 
             {/* Service selection */}
             <div className="mb-2">
-                <FormDropdownComponent label='Alege serviciul oferit' options={options}/>
+                <FormDropdownComponent
+                    label="Alege serviciul oferit *"
+                    options={options}
+                    value={clientType}
+                    onChange={(value) => setClientType(value)}
+                />
             </div>
 
             {/* Client Information */}
