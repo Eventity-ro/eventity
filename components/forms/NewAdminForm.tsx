@@ -4,12 +4,14 @@ import React, {useCallback, useState} from 'react';
 import FormTextInput from "@/components/FormTextInput";
 import FormDropdownComponent from "@/components/FormDropdownComponent";
 import FormButton from "@/components/FormButton";
+import {useRouter} from "next/navigation";
 
-interface NewClientFormProps {
-    onSubmit: () => void;
+interface NewAdminFormProps {
     onSubmitButtonText?: string;
 }
-const NewClientForm: React.FC<NewClientFormProps> = ({onSubmit, onSubmitButtonText = "Urmatorul pas"}) => {
+const NewAdminForm: React.FC<NewAdminFormProps> = ({onSubmitButtonText = "Urmatorul pas"}) => {
+
+    const router = useRouter();
 
     const [clientName, setClientName] = useState('Restaurant Venus');
     const [clientPhoneNumber, setClientPhoneNumber] = useState('0755123456');
@@ -58,8 +60,7 @@ const NewClientForm: React.FC<NewClientFormProps> = ({onSubmit, onSubmitButtonTe
             });
 
             if (res.ok) {
-                alert("Cererea a fost trimisă!");
-                onSubmit(); // continui flow-ul normal
+                router.push('/success');
             } else {
                 const data = await res.json();
                 alert("Eroare: " + data.error || "Ceva n-a mers");
@@ -149,4 +150,4 @@ const NewClientForm: React.FC<NewClientFormProps> = ({onSubmit, onSubmitButtonTe
     );
 };
 
-export default NewClientForm;
+export default NewAdminForm;

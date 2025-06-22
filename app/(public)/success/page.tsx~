@@ -1,5 +1,4 @@
 import { MdDone } from "react-icons/md";
-import Link from "next/link";
 
 export default function SuccessPage() {
     return (
@@ -20,9 +19,6 @@ export default function SuccessPage() {
                     <p className="text-gray-600">
                         24 de ore.
                     </p>
-                    <Link href="/" className="text-blue-600">
-                        Ecranul principal
-                    </Link>
                 </div>
             </div>
         </div>
