@@ -4,12 +4,14 @@ import React, {useCallback, useState} from 'react';
 import FormTextInput from "@/components/FormTextInput";
 import FormDropdownComponent from "@/components/FormDropdownComponent";
 import FormButton from "@/components/FormButton";
+import {useRouter} from "next/navigation";
 
-interface NewClientFormProps {
-    onSubmit: () => void;
+interface NewAdminFormProps {
     onSubmitButtonText?: string;
 }
-const NewClientForm: React.FC<NewClientFormProps> = ({onSubmit, onSubmitButtonText = "Urmatorul pas"}) => {
+const NewAdminForm: React.FC<NewAdminFormProps> = ({onSubmitButtonText = "Urmatorul pas"}) => {
+
+    const router = useRouter();
 
     const options = [
         'Sala nunti',
@@ -18,7 +20,7 @@ const NewClientForm: React.FC<NewClientFormProps> = ({onSubmit, onSubmitButtonTe
         'Barman',
     ];
 
-    const [clientType, setClientType] = useState(options[0]);
+    const [serviceType, setServiceType] = useState(options[0]);
     const [clientName, setClientName] = useState('Restaurant Venus');
     const [clientPhoneNumber, setClientPhoneNumber] = useState('0755123456');
     const [clientEmail, setClientEmail] = useState('venus@contact.com');
@@ -26,19 +28,46 @@ const NewClientForm: React.FC<NewClientFormProps> = ({onSubmit, onSubmitButtonTe
     const [clientFacebook, setClientFacebook] = useState('restaurantvenus');
 
     const validateFormFields = () => {
-        return clientName.trim() !== '' &&
-               clientPhoneNumber.trim() !== '' &&
-               clientEmail.trim() !== '' &&
-               clientInstagram.trim() !== '' &&
-               clientFacebook.trim() !== '';
+        return serviceType !== null &&
+            clientName.trim() !== '' &&
+            clientPhoneNumber.trim() !== '' &&
+            clientEmail.trim() !== '';
     };
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         const isValid = validateFormFields();
-        if (isValid) {
-            onSubmit();
-        } else {
+        if (!isValid) {
             alert("Please complete all required fields.");
+            return;
+        }
+
+        const payload = {
+            type: serviceType, // trebuie să iei valoarea din dropdown
+            name: clientName,
+            phone: clientPhoneNumber,
+            email: clientEmail,
+            instagram: clientInstagram,
+            facebook: clientFacebook,
+        };
+
+        try {
+            const res = await fetch('/api/onboarding', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(payload),
+            });
+
+            if (res.ok) {
+                router.push('/success');
+            } else {
+                const data = await res.json();
+                alert("Eroare: " + data.error || "Ceva n-a mers");
+            }
+        } catch (err) {
+            console.error("Eroare la trimitere:", err);
+            alert("Eroare de rețea");
         }
     };
 
@@ -71,29 +100,29 @@ const NewClientForm: React.FC<NewClientFormProps> = ({onSubmit, onSubmitButtonTe
                 <FormDropdownComponent
                     label="Alege serviciul oferit *"
                     options={options}
-                    value={clientType}
-                    onChange={(value) => setClientType(value)}
+                    value={serviceType}
+                    onChange={(value) => setServiceType(value)}
                 />
             </div>
 
             {/* Client Information */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 <FormTextInput
-                    label="Denumire client"
+                    label="Denumire client *"
                     type="text"
                     value={clientName}
                     edit={true}
                     onChange={handleClientNameChange}
                 />
                 <FormTextInput
-                    label="Telefon"
+                    label="Telefon *"
                     type="phone"
                     value={clientPhoneNumber}
                     edit={true}
                     onChange={handleClientPhoneNumberChange}
                 />
                 <FormTextInput
-                    label="E-mail"
+                    label="E-mail *"
                     type="email"
                     value={clientEmail}
                     edit={true}
@@ -126,4 +155,4 @@ const NewClientForm: React.FC<NewClientFormProps> = ({onSubmit, onSubmitButtonTe
     );
 };
 
-export default NewClientForm;
+export default NewAdminForm;

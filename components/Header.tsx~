@@ -9,6 +9,7 @@ import Image from "next/image";
 import {usePathname, useRouter} from 'next/navigation'
 import Link from 'next/link';
 import MobileSearchBar from "@/components/MobileSearchBar";
+import {router} from "next/client";
 
 export default function Header() {
     const router = useRouter();
