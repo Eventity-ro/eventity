@@ -21,11 +21,11 @@ const NewAdminForm: React.FC<NewAdminFormProps> = ({onSubmitButtonText = "Urmato
     ];
 
     const [serviceType, setServiceType] = useState(options[0]);
-    const [clientName, setClientName] = useState('Restaurant Venus');
-    const [clientPhoneNumber, setClientPhoneNumber] = useState('0755123456');
-    const [clientEmail, setClientEmail] = useState('venus@contact.com');
-    const [clientInstagram, setClientInstagram] = useState('@restaurantvenus');
-    const [clientFacebook, setClientFacebook] = useState('restaurantvenus');
+    const [clientName, setClientName] = useState('');
+    const [clientPhoneNumber, setClientPhoneNumber] = useState('');
+    const [clientEmail, setClientEmail] = useState('');
+    const [clientInstagram, setClientInstagram] = useState('');
+    const [clientFacebook, setClientFacebook] = useState('');
 
     const validateFormFields = () => {
         return serviceType !== null &&

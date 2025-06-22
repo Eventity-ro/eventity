@@ -42,7 +42,7 @@ const NewAdminForm: React.FC<NewAdminFormProps> = ({onSubmitButtonText = "Urmato
         }
 
         const payload = {
-            type: 'Venue', // trebuie să iei valoarea din dropdown
+            type: serviceType, // trebuie să iei valoarea din dropdown
             name: clientName,
             phone: clientPhoneNumber,
             email: clientEmail,
