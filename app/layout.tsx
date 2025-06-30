@@ -1,6 +1,6 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
-import Header from "@/components/Header";
+import Header from "@/components/headers/Header";
 import Footer from "@/components/Footer";
 import ClientLayout from "./client-layout";
 
@@ -17,15 +17,17 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <html lang="en">
-        <body className={inter.className}>
-        <ClientLayout>
-            <div className="flex flex-col min-h-screen">
-                <Header />
-                <main className="flex-grow">{children}</main>
-                <Footer />
-            </div>
-        </ClientLayout>
-        </body>
+            <body className={inter.className}>
+                <ClientLayout>
+                    <div className="flex flex-col min-h-screen">
+                        <Header/>
+                            <main className="flex-grow">
+                                {children}
+                            </main>
+                        <Footer/>
+                    </div>
+                </ClientLayout>
+            </body>
         </html>
     );
 }
