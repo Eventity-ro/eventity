@@ -35,7 +35,7 @@ export default function Header() {
         >
                 <div className="md:hidden flex flex-col pt-4 pb-7 w-full items-center gap-y-4 px-4">
                     <div className="flex flex-row justify-between items-center w-full">
-                        <Link href="/public">
+                        <Link href="/">
                             <Image src={logo} alt="logo" width={150} height={100}/>
                         </Link>
                         <button
@@ -53,7 +53,7 @@ export default function Header() {
                 </div>
 
             <div className="hidden md:flex flex-row justify-between items-center gap-4 pt-7 pb-4 px-12">
-                    <Link href="/public"  className="flex-shrink-0">
+                    <Link href="/"  className="flex-shrink-0">
                         <Image src={logo} alt="logo" width={150} height={100}/>
                     </Link>
 

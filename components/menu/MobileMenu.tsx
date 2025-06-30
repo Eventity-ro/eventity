@@ -83,6 +83,7 @@ export default function MobileMenu({ onClose }: MobileMenuProps) {
                     </button> :
                     <Link
                         href="/auth"
+                        onClick={onClose}
                         className="flex items-center gap-2 hover:bg-gray-100"
                     >
                         <FiLogIn className="text-lg"/> Intra in cont
