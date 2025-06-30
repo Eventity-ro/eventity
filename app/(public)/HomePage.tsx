@@ -126,7 +126,7 @@ export default function HomePage({initialData}: {initialData: Venue[]}) {
         <div className="flex-1 flex-grow">
             <ButtonList />
             <FilterModal isOpen={isOpen} onOpenChange={onOpenChange} setFilters={setFilters}/>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 px-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 px-4 mb-10">
                 {
                     displayData.map((card, index) => (
                         <HomeCard key={index} restaurantId={card.restaurant_id} name={card.name} location={card.city} startingPrice={card.price} imageList={imageList} rating={card.rating} minCapacity={card.minCapacity} maxCapacity={card.maxCapacity}/>
