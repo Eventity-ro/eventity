@@ -10,7 +10,7 @@ export default function Auth() {
 
     return (
         <div className="flex flex-col items-center">
-            <div className="flex pt-10 max-w-5xl flex-col items-center px-4">
+            <div className="flex pt-10 max-w-5xl flex-col items-center px-2">
                 <LoginForm/>
 
                 <div className="text-center my-2 w-full">
