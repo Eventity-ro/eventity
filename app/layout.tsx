@@ -11,6 +11,7 @@ export const metadata = {
     description: "Created by Eventity team",
     icons: {
         icon: "/favicon.svg",
+        apple: "/apple-touch-icon.png",
     },
 };
 
