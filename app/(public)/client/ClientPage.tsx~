@@ -15,7 +15,7 @@ import {Calendar} from "@heroui/react";
 import {parseDate} from "@internationalized/date";
 import Partner from "@/types/partner";
 
-export default function ClientPage({partners}: {partners: Partner[]}) {
+const ClientPage = ({partners}: {partners: Partner[]}) => {
     const searchParams = useSearchParams();
     const name = searchParams.get('name');
     const rating = searchParams.get('rating');
@@ -267,3 +267,5 @@ export default function ClientPage({partners}: {partners: Partner[]}) {
         </div>
     );
 };
+
+export default ClientPage;
