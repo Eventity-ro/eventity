@@ -12,14 +12,14 @@ export async function GET(request: Request) {
                 e.id,
                 e.name,
                 e.date,
-                e.venue_id,
+                e.service_id,
                 e.type,
                 e.attendance,
                 e.deposit,
                 e.details
             FROM event e
-            JOIN venue v       ON e.venue_id        = v.id
-            JOIN restaurant r  ON v.restaurant_id  = r.id
+            JOIN service s       ON e.service_id        = s.id
+            JOIN restaurant r  ON s.restaurant_id  = r.id
             WHERE r.user_id = ${adminId}
             AND date >= CURRENT_DATE
             ORDER BY date ASC
@@ -28,7 +28,7 @@ export async function GET(request: Request) {
 
         return NextResponse.json(result.rows);
     } catch (err) {
-        console.error('Error fetching events by venue:', err);
+        console.error('Error fetching events by service:', err);
         return NextResponse.json(
             { error: 'Internal Server Error' },
             { status: 500 }
@@ -45,7 +45,7 @@ export async function POST(request: Request) {
             INSERT INTO event (
                 name,
                 date,
-                venue_id,
+                service_id,
                 type,
                 attendance,
                 deposit,
@@ -53,7 +53,7 @@ export async function POST(request: Request) {
             ) VALUES (
                 ${data.name},
                 ${data.date},
-                ${data.venueId},
+                ${data.serviceId},
                 ${data.type},
                 ${data.attendance ?? null},
                 ${data.deposit  ?? null},

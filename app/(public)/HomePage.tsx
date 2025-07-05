@@ -9,7 +9,7 @@ import {
 } from "@heroui/react";
 import FilterModal from "@/components/modals/FilterModal";
 import {useEffect, useState} from "react";
-import Venue from "@/types/venue"
+import Service from "@/types/Service"
 
 interface Filters {
     city?: string;
@@ -17,12 +17,12 @@ interface Filters {
     max_capacity?: number;
 }
 
-export default function HomePage({initialData}: {initialData: Venue[]}) {
+export default function HomePage({initialData}: {initialData: Service[]}) {
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
 
-    const [data, setData] = useState<Venue[]>(initialData)
+    const [data, setData] = useState<Service[]>(initialData)
 
-    const [filteredData, setFilteredData] = useState<Venue[]>([])
+    const [filteredData, setFilteredData] = useState<Service[]>([])
 
     const [filtersApplied, setFiltersApplied] = useState(false)
 
@@ -30,7 +30,7 @@ export default function HomePage({initialData}: {initialData: Venue[]}) {
 
     const imageList = [exampleImage1, exampleImage2, exampleImage1, exampleImage2, exampleImage1, exampleImage1, exampleImage1, exampleImage1, exampleImage1, exampleImage1, exampleImage1, exampleImage1]
 
-    const filterData = (filters: Filters, restaurants: Venue[]) => {
+    const filterData = (filters: Filters, restaurants: Service[]) => {
         return restaurants.filter(restaurant => {
             // Check city if provided
             if (filters.city && restaurant.city !== filters.city) {
@@ -129,7 +129,7 @@ export default function HomePage({initialData}: {initialData: Venue[]}) {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 px-4 mb-10">
                 {
                     displayData.map((card, index) => (
-                        <HomeCard key={index} restaurantId={card.restaurant_id} name={card.name} location={card.city} startingPrice={card.price} imageList={imageList} rating={card.rating} minCapacity={card.minCapacity} maxCapacity={card.maxCapacity}/>
+                        <HomeCard key={index} restaurantId={card.restaurantId} name={card.name} location={card.city} startingPrice={card.price} imageList={imageList} rating={card.rating} minCapacity={card.minCapacity} maxCapacity={card.maxCapacity}/>
                     ))
                 }
             </div>

@@ -7,18 +7,18 @@ import Link from "next/link";
 import {useSearchParams} from "next/navigation";
 import FormButton from "@/components/FormButton";
 
-interface NewVenueFormProps {
+interface NewServiceFormProps {
     onBack: () => void,
     onSubmit: () => void;
 }
-const NewVenueForm: React.FC<NewVenueFormProps> = ({onBack, onSubmit}) => {
+const NewServiceForm: React.FC<NewServiceFormProps> = ({onBack, onSubmit}) => {
 
-    const [venueCapacity, setVenueCapacity] = useState(250);
+    const [serviceCapacity, setServiceCapacity] = useState(250);
     const [menuStartPrice, setMenuStartPrice] = useState(200);
 
 
     const validateFormFields = () => {
-        return venueCapacity > 0 && menuStartPrice > 0;
+        return serviceCapacity > 0 && menuStartPrice > 0;
     };
 
     const handleSubmit = () => {
@@ -30,8 +30,8 @@ const NewVenueForm: React.FC<NewVenueFormProps> = ({onBack, onSubmit}) => {
         }
     };
 
-    const handleVenueCapacityChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-        setVenueCapacity(Number(e.target.value));
+    const handleServiceCapacityChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+        setServiceCapacity(Number(e.target.value));
     }, []);
 
     const handleMenuPriceChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
@@ -42,19 +42,19 @@ const NewVenueForm: React.FC<NewVenueFormProps> = ({onBack, onSubmit}) => {
         <div className="w-full mx-auto mt-8 bg-white p-6 rounded-lg shadow-2xl">
             <h2 className="text-xl font-bold mb-4">Generale</h2>
 
-            {/* Venue Information */}
+            {/* Service Information */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                {/* Venue capacity */}
+                {/* Service capacity */}
 
                     <FormTextInput
                         label="Capacitate sala"
                         type="number"
-                        value={venueCapacity}
+                        value={serviceCapacity}
                         edit={true}
-                        onChange={handleVenueCapacityChange}
+                        onChange={handleServiceCapacityChange}
                     />
 
-                {/* Venue price */}
+                {/* Service price */}
                     <FormTextInput
                         label="Pret incepand de la/ meniu (lei)"
                         type="number"
@@ -77,4 +77,4 @@ const NewVenueForm: React.FC<NewVenueFormProps> = ({onBack, onSubmit}) => {
     );
 };
 
-export default NewVenueForm;
+export default NewServiceForm;

@@ -31,7 +31,6 @@ const RestaurantVenusPage: React.FC = () => {
         console.log(e.target.value);
     }, []);
 
-    const [venueCapacity, setVenueCapacity] = useState(250);
     const [menuStartPrice, setMenuStartPrice] = useState(200);
 
     return (
@@ -43,7 +42,6 @@ const RestaurantVenusPage: React.FC = () => {
                 <div className="grid grid-cols-1 gap-4">
                     <div className="mb-2">
                         <FormDropdownComponent
-                            label='Alege serviciul oferit'
                             options={serviceOptions}
                             value='idk'
                             onChange={handleIDKChange}
@@ -59,7 +57,6 @@ const RestaurantVenusPage: React.FC = () => {
                             onChange={handleMenuPriceChange}
                         />
                         <FormDropdownComponent
-                            label='Capacitate Sala'
                             options={capacityOptions}
                             value='idk'
                             onChange={handleIDKChange}

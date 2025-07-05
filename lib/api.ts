@@ -1,28 +1,29 @@
 import {sql} from "@vercel/postgres";
-import Partner from "@/types/partner";
-import Venue from "@/types/venue"
+import Partner from "@/types/Partner";
+import Service from "@/types/Service"
 
-export async function getRestaurants(): Promise<Venue[]> {
+export async function getRestaurants(): Promise<Service[]> {
     const result = await sql`
         SELECT 
             r.id as restaurant_id,
             r.name,
             r.address,
             r.city,
-            v.id as venue_id,
+            v.id as service_id,
             v.price,
             v.discount,
             v.rating,
             v.min_capacity,
             v.max_capacity
         FROM restaurant r 
-        LEFT JOIN venue v 
+        LEFT JOIN service v 
         ON r.id = v.restaurant_id;
     `;
 
     return result.rows.map(row => ({
-        restaurant_id: row.restaurant_id,
-        venueId: row.venue_id,
+        id: row.id,
+        restaurantId: row.restaurant_id,
+        serviceId: row.service_id,
         name: row.name,
         address: row.address,
         city: row.city,

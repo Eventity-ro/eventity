@@ -12,8 +12,8 @@ interface NewClientFormProps {
 }
 const NewServiceFormStep1: React.FC<NewClientFormProps> = ({onBack, onSubmit}) => {
     const [serviceType, setServiceType] = useState('');
-    const [minVenueCapacity, setMinVenueCapacity] = useState(0);
-    const [maxVenueCapacity, setMaxVenueCapacity] = useState(0);
+    const [minServiceCapacity, setMinServiceCapacity] = useState(0);
+    const [maxServiceCapacity, setMaxServiceCapacity] = useState(0);
     const [menuStartPrice, setMenuStartPrice] = useState(200);
 
     const serviceOptions = [
@@ -45,7 +45,7 @@ const NewServiceFormStep1: React.FC<NewClientFormProps> = ({onBack, onSubmit}) =
         // } else {
         //     alert("Please complete all required fields.");
         // }
-        onSubmit({serviceType: serviceType, minVenueCapacity: minVenueCapacity, maxVenueCapacity: maxVenueCapacity, menuStartPrice: menuStartPrice});
+        onSubmit({serviceType: serviceType, minServiceCapacity: minServiceCapacity, maxServiceCapacity: maxServiceCapacity, menuStartPrice: menuStartPrice});
 
     };
 
@@ -57,7 +57,7 @@ const NewServiceFormStep1: React.FC<NewClientFormProps> = ({onBack, onSubmit}) =
         setServiceType(e.target.value);
     }, []);
 
-    const handleVenueCapacityChange = useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
+    const handleServiceCapacityChange = useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
         // Match either "number" or "number-number"
         const value = e.target.value;
 
@@ -66,12 +66,12 @@ const NewServiceFormStep1: React.FC<NewClientFormProps> = ({onBack, onSubmit}) =
 
         if (rangeMatch) {
             // It's a range: "min-max"
-            setMinVenueCapacity(Number(rangeMatch[1]));
-            setMaxVenueCapacity(Number(rangeMatch[2]));
+            setMinServiceCapacity(Number(rangeMatch[1]));
+            setMaxServiceCapacity(Number(rangeMatch[2]));
         } else if (singleMatch) {
             // It's a single number: "max"
-            setMinVenueCapacity(1); // or set to 0 if that's your convention
-            setMaxVenueCapacity(Number(singleMatch[1]));
+            setMinServiceCapacity(1); // or set to 0 if that's your convention
+            setMaxServiceCapacity(Number(singleMatch[1]));
         }
     }, []);
 
@@ -82,7 +82,6 @@ const NewServiceFormStep1: React.FC<NewClientFormProps> = ({onBack, onSubmit}) =
             {/* Service selection */}
             <div className="mb-2">
                 <FormDropdownComponent
-                    label='Alege serviciul oferit'
                     options={serviceOptions}
                     value={serviceType}
                     onChange={handleServiceTypeChange}
@@ -99,10 +98,9 @@ const NewServiceFormStep1: React.FC<NewClientFormProps> = ({onBack, onSubmit}) =
                     onChange={handleMenuPriceChange}
                 />
                 <FormDropdownComponent
-                    label='Capacitate Sala'
                     options={capacityOptions}
-                    value={minVenueCapacity + '-' + maxVenueCapacity}
-                    onChange={handleVenueCapacityChange}
+                    value={minServiceCapacity + '-' + maxServiceCapacity}
+                    onChange={handleServiceCapacityChange}
                 />
             </div>
 
