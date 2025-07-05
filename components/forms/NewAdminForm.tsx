@@ -91,6 +91,10 @@ const NewAdminForm: React.FC<NewAdminFormProps> = ({onSubmitButtonText = "Urmato
         setClientFacebook(e.target.value);
     }, []);
 
+    const handleServiceTypeChange = useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
+        setServiceType(e.target.value);
+    }, []);
+
     return (
         <div className="w-full mx-auto mt-8 bg-white p-6 rounded-lg shadow-2xl">
             <h2 className="text-xl font-bold mb-4">Informații client</h2>
@@ -101,7 +105,7 @@ const NewAdminForm: React.FC<NewAdminFormProps> = ({onSubmitButtonText = "Urmato
                     label="Alege serviciul oferit *"
                     options={options}
                     value={serviceType}
-                    onChange={(value) => setServiceType(value)}
+                    onChange={handleServiceTypeChange}
                 />
             </div>
 

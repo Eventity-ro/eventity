@@ -9,7 +9,7 @@ interface NewDetailsFormProps {
     onBack: () => void,
     onSubmit: () => void;
 }
-const NewDetailsForm: React.FC<NewDetailsFormProps> = ({onBack, onSubmit}) => {
+const NewServiceFormStep2: React.FC<NewDetailsFormProps> = ({onBack, onSubmit}) => {
 
     const [description, setDescription] = useState('');
 
@@ -44,10 +44,10 @@ const NewDetailsForm: React.FC<NewDetailsFormProps> = ({onBack, onSubmit}) => {
             {/* Submit Button */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 <FormButton label='Inapoi' darkMode={false} onClick={onBack}/>
-                <FormButton label='Urmatorul pas' darkMode={true} onClick={handleSubmit}/>
+                <FormButton label='Finalizeaza' darkMode={true} onClick={handleSubmit}/>
             </div>
         </div>
     );
 };
 
-export default NewDetailsForm;
+export default NewServiceFormStep2;

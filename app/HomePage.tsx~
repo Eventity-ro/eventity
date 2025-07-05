@@ -123,7 +123,7 @@ export default function HomePage({initialData}: {initialData: Venue[]}) {
     const displayData = filtersApplied ? filteredData : data;
 
     return (
-        <div className="flex-1 px-10 flex-grow">
+        <div className="px-10">
             <ButtonList />
             <FilterModal isOpen={isOpen} onOpenChange={onOpenChange} setFilters={setFilters}/>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 ">

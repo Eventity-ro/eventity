@@ -1,70 +1,44 @@
 'use client';
 
 import React, { useState } from "react";
-import ClientProgressBar from "@/components/ClientProgressBar";
-import NewClientForm from "@/components/forms/NewClientForm";
-import NewVenueForm from "@/components/forms/NewVenueForm";
-import NewDetailsForm from "@/components/forms/NewDetailsForm";
+import ProgressBar from "@/components/ProgressBar";
+import NewServiceFormStep1 from "@/components/forms/NewServiceFormStep1";
+import NewServiceFormStep2 from "@/components/forms/NewServiceFormStep2";
 
 const NewClient = () => {
-    const [isNewClientFormOpen, setIsNewClientFormOpen] = useState(true);
-    const [isNewVenueFormOpen, setIsNewVenueFormOpen] = useState(false);
-    const [isNewDetailsFormFormOpen, setIsNewDetailsFormOpen] = useState(false);
+    const [serviceDetails, setClientDetails] = useState({});
+    const [currentStep, setCurrentStep] = useState(1);
 
     return (
         <div className="flex justify-center min-h-screen">
             <div className="flex pt-10 max-w-5xl flex-col items-center">
-                {isNewClientFormOpen &&
+                {currentStep == 1 &&
                     (<div className="pb-8">
                     <span className="text-4xl font-bold">Adauga serviciu nou!</span>
                 </div>)}
-                {isNewClientFormOpen && (
+                {currentStep == 1 && (
                     <div className="flex flex-col items-center">
-                        <ClientProgressBar
-                            firstStepActioned={true}
-                            secondStepActioned={false}
-                            thirdStepActioned={false}
+                        <ProgressBar
+                            currentStep={1}
                         />
-                        <NewClientForm
-                            onSubmit={() => {
-                                setIsNewClientFormOpen(false);
-                                setIsNewVenueFormOpen(true);
+                        <NewServiceFormStep1
+                            onSubmit={(serviceDetails) => {
+                                setClientDetails(serviceDetails);
+                                setCurrentStep(2);
                             }}
+                            onBack={()=>console.log('Inapoi')}
                         />
                     </div>
                 )}
 
-                {isNewVenueFormOpen && (
+                {currentStep == 2 && (
                     <div className="flex flex-col items-center">
-                        <ClientProgressBar
-                            firstStepActioned={true}
-                            secondStepActioned={true}
-                            thirdStepActioned={false}
+                        <ProgressBar
+                            currentStep={2}
                         />
-                        <NewVenueForm
+                        <NewServiceFormStep2
                             onBack={() => {
-                                setIsNewVenueFormOpen(false);
-                                setIsNewClientFormOpen(true);
-                            }}
-                            onSubmit={() => {
-                                setIsNewVenueFormOpen(false);
-                                setIsNewDetailsFormOpen(true);
-                            }}
-                        />
-                    </div>
-                )}
-
-                {isNewDetailsFormFormOpen && (
-                    <div className="flex flex-col items-center">
-                        <ClientProgressBar
-                            firstStepActioned={true}
-                            secondStepActioned={true}
-                            thirdStepActioned={true}
-                        />
-                        <NewDetailsForm
-                            onBack={() => {
-                                setIsNewDetailsFormOpen(false);
-                                setIsNewVenueFormOpen(true);
+                                setCurrentStep(1);
                             }}
                             onSubmit={() => {
                                 alert("Final");
