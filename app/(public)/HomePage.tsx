@@ -93,8 +93,8 @@ export default function HomePage({initialData}: {initialData: Venue[]}) {
         ];
 
         return (
-            <div className='flex justify-between flex-nowrap whitespace-nowrap py-4'>
-                <div className="flex overflow-x-auto flex-nowrap whitespace-nowrap gap-x-3 mr-4">
+            <div className='flex justify-between flex-nowrap whitespace-nowrap py-6 px-4'>
+                <div className="flex overflow-x-auto flex-nowrap whitespace-nowrap gap-x-3">
                     <Button className="bg-[#5C8171]" color="primary" radius='full' onPress={() => setFiltersApplied(false)}>
                         Toate
                     </Button>
@@ -111,7 +111,7 @@ export default function HomePage({initialData}: {initialData: Venue[]}) {
                         ))}
                     </div>
                 </div>
-                <Button className="bg-[#5C8171]" color="primary" onPress={onOpen} radius='full'>
+                <Button className="bg-[#5C8171]" color="primary" radius="full" onPress={onOpen}>
                     Filtre
                     <BiFilter color="white" size="20" />
                 </Button>
@@ -123,10 +123,10 @@ export default function HomePage({initialData}: {initialData: Venue[]}) {
     const displayData = filtersApplied ? filteredData : data;
 
     return (
-        <div className="flex-1 px-10 flex-grow">
+        <div className="flex-1 flex-grow">
             <ButtonList />
             <FilterModal isOpen={isOpen} onOpenChange={onOpenChange} setFilters={setFilters}/>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 ">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 px-4 mb-10">
                 {
                     displayData.map((card, index) => (
                         <HomeCard key={index} restaurantId={card.restaurant_id} name={card.name} location={card.city} startingPrice={card.price} imageList={imageList} rating={card.rating} minCapacity={card.minCapacity} maxCapacity={card.maxCapacity}/>

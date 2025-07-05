@@ -1,4 +1,3 @@
-import { sql } from '@vercel/postgres';
 import HomePage from "@/app/(public)/HomePage";
 import {getRestaurants} from "@/lib/api";
 

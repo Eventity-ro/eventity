@@ -5,18 +5,20 @@ import React, {ChangeEvent} from 'react';
 interface FormDropdownProps {
     label: string;
     options: string[];
-    onChange?: (e: ChangeEvent<HTMLSelectElement>) => void;
+    value: string;
+    onChange: (value: string) => void;
 }
 
-const FormDropdownComponent: React.FC<FormDropdownProps> = ({ label, options, onChange}) => {
+const FormDropdownComponent: React.FC<FormDropdownProps> = ({ label, options, value, onChange }) => {
     return (
         <select
-            id="service"  
+            id="service"
             name="service"
-            onChange={onChange}
-            className="w-full h-16 py-2 px-2 border border-gray-300 rounded-md focus:outline-none sm:text-sm"
+            className="w-full h-12 py-2 px-2 border border-gray-300 rounded-md focus:outline-none sm:text-sm"
+            value={value}
+            onChange={(e) => onChange(e.target.value)}
         >
-            <option value={label} disabled>{label}</option>
+            <option value={label} disabled hidden>{label}</option>
             {options.map(
                 (option, index) => <option key={index} value={option}>{option}</option>
             )}
