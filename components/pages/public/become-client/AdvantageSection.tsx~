@@ -1,0 +1,53 @@
+import Advantage from "@/components/pages/public/become-client/Advantage";
+
+const advantages = [
+    {
+        title: "Toți prestatorii de servicii evenimente într-un singur loc",
+        description: "Este extrem de important să se regăsească toți prestatorii de servicii pentru evenimente într-un singur loc, unde poși să citești detalii despre serviciile oferite, poze, reviews etc.",
+        eventity: true,
+        competitors: true,
+    },
+    {
+        title: "Filtrare după dată și locație",
+        description: "Prin procesul de filtrare dată și locație, utilizatorul poate să descopere rapid dacă sunteți disponibil în data selectată fără a mai fi nevoit sa vă sune. Astfel nu o să fiți deranjați zilnic de sute de telefoane care repetă aceeași poveste. ",
+        eventity: true,
+        competitors: false,
+    },
+    {
+        title: "Agendă virtuală",
+        description: "O agendă virtuală pentru programarea evenimentelor este avantajoasă pentru a avea accesibilitate facilă, sincronizare automată, notițe și detalii importante discutate cu viitori beneficiari, notificări și alerte, partajare simplă cu alții, și elimină riscul de a pierde informațiile din cauza deteriorării fizice.",
+        eventity: true,
+        competitors: false,
+    },
+    {
+        title: "Administrare calendar rezervări",
+        description: "Administrarea unui calendar de rezervări pentru evenimente este importantă pentru a asigura o gestionare eficientă a evenimentelor, evitând suprapunerile și conflictele între evenimente. Oferă vizibilitate și transparență pentru toate părțile interesate, permițându-le să vadă datele libere sau ocupate existente. Datele pot fi blocate sau deblocate doar de administratori, un utilizator nu poate să rezerve o dată sau o locație direct din aplicație. Datele afișate pe ecranele lor sunt strict consultative, iar rezervările se fac telefonic după ce clientul consideră că ceea ce oferiți se pliază pe pretențiile și nevoile lor.",
+        eventity: true,
+        competitors: false,
+    },
+    {
+        title: "Expunere rezervări, detalii servicii, oferte",
+        description: "Utilizatorii au acces la toate datele disponibile despre serviciile pe care le oferiți, precum prețul, disponibilitatea, locația...",
+        eventity: true,
+        competitors: false,
+    },
+];
+
+export default function AdvantageSection() {
+    return (
+        <section className="py-12 px-6 max-w-7xl mx-auto">
+            <h2 className="text-3xl font-bold text-left mb-10">Avantaje să fii client Eventity</h2>
+            <div className="flex flex-col">
+                {advantages.map((item, i) => (
+                    <Advantage
+                        key={i}
+                        title={item.title}
+                        description={item.description}
+                        eventity={item.eventity}
+                        competitors={item.competitors}
+                    />
+                ))}
+            </div>
+        </section>
+    );
+}
