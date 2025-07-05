@@ -6,7 +6,7 @@ interface FormDropdownProps {
     label: string;
     options: string[];
     value: string;
-    onChange: (value: string) => void;
+    onChange: (e: ChangeEvent<HTMLSelectElement>) => void;
 }
 
 const FormDropdownComponent: React.FC<FormDropdownProps> = ({ label, options, value, onChange }) => {
@@ -16,7 +16,7 @@ const FormDropdownComponent: React.FC<FormDropdownProps> = ({ label, options, va
             name="service"
             className="w-full h-12 py-2 px-2 border border-gray-300 rounded-md focus:outline-none sm:text-sm"
             value={value}
-            onChange={(e) => onChange(e.target.value)}
+            onChange={onChange}
         >
             <option value={label} disabled hidden>{label}</option>
             {options.map(

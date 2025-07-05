@@ -81,7 +81,12 @@ const NewServiceFormStep1: React.FC<NewClientFormProps> = ({onBack, onSubmit}) =
 
             {/* Service selection */}
             <div className="mb-2">
-                <FormDropdownComponent label='Alege serviciul oferit' options={serviceOptions} onChange={handleServiceTypeChange}/>
+                <FormDropdownComponent
+                    label='Alege serviciul oferit'
+                    options={serviceOptions}
+                    value={serviceType}
+                    onChange={handleServiceTypeChange}
+                />
             </div>
 
             {/* Client Information */}
@@ -93,7 +98,12 @@ const NewServiceFormStep1: React.FC<NewClientFormProps> = ({onBack, onSubmit}) =
                     edit={true}
                     onChange={handleMenuPriceChange}
                 />
-                <FormDropdownComponent label='Capacitate Sala' options={capacityOptions} onChange={handleVenueCapacityChange}/>
+                <FormDropdownComponent
+                    label='Capacitate Sala'
+                    options={capacityOptions}
+                    value={minVenueCapacity + '-' + maxVenueCapacity}
+                    onChange={handleVenueCapacityChange}
+                />
             </div>
 
             <div className="w-full mt-4">

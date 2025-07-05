@@ -27,6 +27,10 @@ const RestaurantVenusPage: React.FC = () => {
         setMenuStartPrice(Number(e.target.value));
     }, []);
 
+    const handleIDKChange = useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
+        console.log(e.target.value);
+    }, []);
+
     const [venueCapacity, setVenueCapacity] = useState(250);
     const [menuStartPrice, setMenuStartPrice] = useState(200);
 
@@ -38,7 +42,12 @@ const RestaurantVenusPage: React.FC = () => {
                 <h2 className="text-lg font-semibold">Generale</h2>
                 <div className="grid grid-cols-1 gap-4">
                     <div className="mb-2">
-                        <FormDropdownComponent label='Alege serviciul oferit' options={serviceOptions}/>
+                        <FormDropdownComponent
+                            label='Alege serviciul oferit'
+                            options={serviceOptions}
+                            value='idk'
+                            onChange={handleIDKChange}
+                        />
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -49,7 +58,12 @@ const RestaurantVenusPage: React.FC = () => {
                             edit={true}
                             onChange={handleMenuPriceChange}
                         />
-                        <FormDropdownComponent label='Capacitate Sala' options={capacityOptions}/>
+                        <FormDropdownComponent
+                            label='Capacitate Sala'
+                            options={capacityOptions}
+                            value='idk'
+                            onChange={handleIDKChange}
+                        />
                     </div>
                 </div>
             </section>

@@ -25,8 +25,6 @@ type FiltersModalProps = {
 };
 
 const NewEventModal: React.FC<FiltersModalProps> = ({ isOpen, onOpenChange, onSubmit }) => {
-    if (!isOpen) return null;
-
     const [venueID, setVenueID] = React.useState<number>();
     const [name, setName] = React.useState<string>();
     const [date, setDate] = React.useState<CalendarDate>(today(getLocalTimeZone()));
@@ -48,6 +46,8 @@ const NewEventModal: React.FC<FiltersModalProps> = ({ isOpen, onOpenChange, onSu
         () => Array.from(selectedTypeKeys).join(", ").replace(/_/g, ""),
         [selectedTypeKeys],
     );
+
+    if (!isOpen) return null;
 
     return (
         <Modal isOpen={isOpen} size="xl" onOpenChange={onOpenChange}>
