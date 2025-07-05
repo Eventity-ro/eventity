@@ -13,7 +13,7 @@ import Venue from "@/types/venue";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
-const imageList = [exampleImage1, exampleImage2, exampleImage1, exampleImage2, exampleImage1, exampleImage1, exampleImage1, exampleImage1, exampleImage1, exampleImage1, exampleImage1, exampleImage1]
+const imageList = [exampleImage1, exampleImage2, exampleImage1, exampleImage2, exampleImage1, exampleImage1, exampleImage1, exampleImage1, exampleImage1, exampleImage1, exampleImage1, exampleImage2]
 
 interface ServicesPageProps {
     restaurants: Venue[]
