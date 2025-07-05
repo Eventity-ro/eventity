@@ -7,8 +7,8 @@ import Link from 'next/link';
 
 interface HomeCardProps {
     restaurantId: number;
-    name: string;
-    location: string;
+    name?: string;
+    location?: string;
     startingPrice: number;
     imageList: any[];
     rating: number;

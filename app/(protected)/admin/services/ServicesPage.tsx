@@ -15,7 +15,11 @@ const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 const imageList = [exampleImage1, exampleImage2, exampleImage1, exampleImage2, exampleImage1, exampleImage1, exampleImage1, exampleImage1, exampleImage1, exampleImage1, exampleImage1, exampleImage1]
 
-const ServicesPage = ({restaurants}: {restaurants: Venue[]}) => {
+interface ServicesPageProps {
+    restaurants: Venue[]
+}
+
+const ServicesPage = ({restaurants}: ServicesPageProps) => {
 
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
 
@@ -76,7 +80,7 @@ const ServicesPage = ({restaurants}: {restaurants: Venue[]}) => {
                                       minCapacity={card.minCapacity} maxCapacity={card.maxCapacity}/>
 
                             <Link className="bg-[#5C8171] text-white px-6 py-2 rounded mb-5"
-                                  href={"/admin/services/account-details"}>
+                                  href={"/admin/services/details"}>
                                 Editeaza
                             </Link>
                         </div>

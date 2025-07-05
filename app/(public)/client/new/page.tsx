@@ -1,7 +1,7 @@
 'use client';
 
 import React from "react";
-import NewClientForm from "@/components/forms/NewClientForm";
+import NewServiceFormStep1 from "@/components/forms/NewServiceFormStep1";
 
 const NewClient = () => {
 
@@ -12,7 +12,7 @@ const NewClient = () => {
                     <span className="text-4xl font-bold">Devino client</span>
                 </div>
                     <div className="flex flex-col items-center">
-                        <NewClientForm onSubmit={() => alert("Data was submitted.")} onSubmitButtonText="Aplica"/>
+                        <NewServiceFormStep1 onSubmit={() => alert("Data was submitted.")} onBack={() => alert("Back")} />
                     </div>
             </div>
         </div>

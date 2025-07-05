@@ -5,23 +5,25 @@ import {EventRecord} from "@/types/Event";
 export async function GET(request: Request) {
     try {
         const { searchParams } = new URL(request.url);
-        const venueId = searchParams.get('venueId');
+        const adminId = searchParams.get('adminId');
 
         const result = await sql`
             SELECT
-                id,
-                name,
-                date,
-                venue_id,
-                type,
-                attendance,
-                deposit,
-                details
-                FROM event
-                WHERE venue_id = ${venueId}
-                AND date >= CURRENT_DATE
-                ORDER BY date ASC
-                LIMIT 3
+                e.id,
+                e.name,
+                e.date,
+                e.venue_id,
+                e.type,
+                e.attendance,
+                e.deposit,
+                e.details
+            FROM event e
+            JOIN venue v       ON e.venue_id        = v.id
+            JOIN restaurant r  ON v.restaurant_id  = r.id
+            WHERE r.user_id = ${adminId}
+            AND date >= CURRENT_DATE
+            ORDER BY date ASC
+            LIMIT 3
         `;
 
         return NextResponse.json(result.rows);
