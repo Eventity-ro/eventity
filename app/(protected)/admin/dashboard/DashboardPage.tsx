@@ -31,7 +31,7 @@ export default function AdminDashboard({adminId}: AdminDashboardPageProps) {
             const newEvent = {
                 name: newEventData.name,
                 date: newEventData.date,
-                venueId: 1,
+                serviceId: 1,
                 type: newEventData.type,
                 attendance: newEventData.attendance,
                 deposit: newEventData.deposit,
@@ -67,7 +67,7 @@ export default function AdminDashboard({adminId}: AdminDashboardPageProps) {
                 Adaugă eveniment nou
             </button>
 
-            <NewEventModal isOpen={isOpen} onOpenChange={onOpenChange} onSubmit={handleAddEvent}/>
+            <NewEventModal isOpen={isOpen} onOpenChange={onOpenChange} onSubmit={handleAddEvent} />
 
             <h2 className="text-xl font-semibold mb-5">Evenimente următoare</h2>
 

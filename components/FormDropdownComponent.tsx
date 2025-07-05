@@ -3,13 +3,12 @@
 import React, {ChangeEvent} from 'react';
 
 interface FormDropdownProps {
-    label: string;
     options: string[];
     value: string;
     onChange: (e: ChangeEvent<HTMLSelectElement>) => void;
 }
 
-const FormDropdownComponent: React.FC<FormDropdownProps> = ({ label, options, value, onChange }) => {
+const FormDropdownComponent: React.FC<FormDropdownProps> = ({ options, value, onChange }) => {
     return (
         <select
             id="service"
@@ -18,7 +17,6 @@ const FormDropdownComponent: React.FC<FormDropdownProps> = ({ label, options, va
             value={value}
             onChange={onChange}
         >
-            <option value={label} disabled hidden>{label}</option>
             {options.map(
                 (option, index) => <option key={index} value={option}>{option}</option>
             )}

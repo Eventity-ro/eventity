@@ -102,7 +102,6 @@ const NewAdminForm: React.FC<NewAdminFormProps> = ({onSubmitButtonText = "Urmato
             {/* Service selection */}
             <div className="mb-2">
                 <FormDropdownComponent
-                    label="Alege serviciul oferit *"
                     options={options}
                     value={serviceType}
                     onChange={handleServiceTypeChange}

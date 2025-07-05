@@ -8,15 +8,15 @@ import Link from "next/link";
 import React, {useState} from "react";
 import {useDisclosure} from "@heroui/react";
 import AddPartnerModal from "@/components/modals/AddPartnerModal";
-import Partner from "@/types/partner";
-import Venue from "@/types/venue";
+import Partner from "@/types/Partner";
+import Service from "@/types/Service";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 const imageList = [exampleImage1, exampleImage2, exampleImage1, exampleImage2, exampleImage1, exampleImage1, exampleImage1, exampleImage1, exampleImage1, exampleImage1, exampleImage1, exampleImage2]
 
 interface ServicesPageProps {
-    restaurants: Venue[]
+    restaurants: Service[]
 }
 
 const ServicesPage = ({restaurants}: ServicesPageProps) => {
@@ -75,7 +75,7 @@ const ServicesPage = ({restaurants}: ServicesPageProps) => {
                 {
                     restaurants.map((card, index) => (
                         <div key={index}>
-                            <HomeCard name={card.name} location={card.city} restaurantId={card.restaurant_id}
+                            <HomeCard name={card.name} location={card.city} restaurantId={card.restaurantId}
                                       startingPrice={card.price} imageList={imageList} rating={card.rating}
                                       minCapacity={card.minCapacity} maxCapacity={card.maxCapacity}/>
 

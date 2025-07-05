@@ -13,7 +13,7 @@ import ClientContactInfo from "@/components/ClientContactInfo";
 import MapComponent from "@/components/MapComponent";
 import {Calendar} from "@heroui/react";
 import {parseDate} from "@internationalized/date";
-import Partner from "@/types/partner";
+import Partner from "@/types/Partner";
 
 export default function ClientPage({partners}: {partners: Partner[]}) {
     const searchParams = useSearchParams();
