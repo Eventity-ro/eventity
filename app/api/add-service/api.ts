@@ -1,10 +1,10 @@
 import { NextResponse } from 'next/server';
 import { sql } from '@vercel/postgres';
-import Venue from "@/types/venue";
+import Service from "@/types/Service";
 
 export async function POST(request: Request) {
     try {
-        const details: Venue = await request.json();
+        const details: Service = await request.json();
 
         // Build arrays for columns, placeholder tokens, and parameters.
         const columns: string[] = [];
@@ -22,10 +22,10 @@ export async function POST(request: Request) {
             placeholders.push(`$${paramIndex++}`);
             params.push(details.discount);
         }
-        if (details.restaurant_id !== undefined) {
+        if (details.restaurantId !== undefined) {
             columns.push('restaurant_id');
             placeholders.push(`$${paramIndex++}`);
-            params.push(details.restaurant_id);
+            params.push(details.restaurantId);
         }
         if (details.rating !== undefined) {
             columns.push('rating');
