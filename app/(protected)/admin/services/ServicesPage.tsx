@@ -75,7 +75,7 @@ const ServicesPage = ({restaurants}: ServicesPageProps) => {
                 {
                     restaurants.map((card, index) => (
                         <div key={index}>
-                            <HomeCard name={card.name} location={card.city} restaurantId={card.restaurant_id}
+                            <HomeCard name={card.name} location={card.city} restaurantId={card.restaurantId}
                                       startingPrice={card.price} imageList={imageList} rating={card.rating}
                                       minCapacity={card.minCapacity} maxCapacity={card.maxCapacity}/>
 
