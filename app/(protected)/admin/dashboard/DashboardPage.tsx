@@ -6,14 +6,16 @@ import {useDisclosure} from "@heroui/react";
 import NewEventModal from "@/components/modals/NewEventModal";
 import {EventRecord} from "@/types/Event";
 import useSWR from "swr";
+import {Service} from "@/types/Service";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 interface AdminDashboardPageProps {
-    adminId: number
+    adminId: number,
+    adminServices: Service[]
 ;}
 
-export default function AdminDashboard({adminId}: AdminDashboardPageProps) {
+export default function AdminDashboard({adminId, adminServices}: AdminDashboardPageProps) {
 
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
 
@@ -21,16 +23,12 @@ export default function AdminDashboard({adminId}: AdminDashboardPageProps) {
         `/api/events?adminId=${adminId}`,
         fetcher
     );
-
-    const [isAdding, setIsAdding] = React.useState(false);
-
-    const handleAddEvent = async (newEventData: EventRecord) => {
-        setIsAdding(true);
+    const handleAddEvent = async (newEventData: { name: string, eventDate: string, serviceId: number, type: string, attendance: number, deposit: number, details: string }) => {
         try {
             // Example payload; replace with real form data
             const newEvent = {
                 name: newEventData.name,
-                date: newEventData.date,
+                date: newEventData.eventDate,
                 serviceId: 1,
                 type: newEventData.type,
                 attendance: newEventData.attendance,
@@ -52,8 +50,6 @@ export default function AdminDashboard({adminId}: AdminDashboardPageProps) {
             }
         } catch (err) {
             console.error('Error adding event', err);
-        } finally {
-            setIsAdding(false);
         }
     };
 
@@ -67,7 +63,7 @@ export default function AdminDashboard({adminId}: AdminDashboardPageProps) {
                 Adaugă eveniment nou
             </button>
 
-            <NewEventModal isOpen={isOpen} onOpenChange={onOpenChange} onSubmit={handleAddEvent} />
+            <NewEventModal isOpen={isOpen} onOpenChange={onOpenChange} onSubmit={handleAddEvent} adminServices={adminServices}/>
 
             <h2 className="text-xl font-semibold mb-5">Evenimente următoare</h2>
 

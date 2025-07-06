@@ -3,7 +3,7 @@
 import React, {ChangeEvent} from 'react';
 
 interface FormDropdownProps {
-    options: string[];
+    options: any[];
     value: string;
     onChange: (e: ChangeEvent<HTMLSelectElement>) => void;
 }
@@ -18,7 +18,7 @@ const FormDropdownComponent: React.FC<FormDropdownProps> = ({ options, value, on
             onChange={onChange}
         >
             {options.map(
-                (option, index) => <option key={index} value={option}>{option}</option>
+                (option, index) => <option key={option?.id || index} value={option?.name || option}>{option?.name || option}</option>
             )}
         </select>
     );

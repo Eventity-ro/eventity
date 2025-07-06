@@ -1,4 +1,4 @@
-interface Service {
+export interface Service {
     id: number;
     name: string;
     restaurantId: number;
