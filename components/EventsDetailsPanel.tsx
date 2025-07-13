@@ -1,14 +1,14 @@
 import React from 'react';
-import { Event } from '@/components/AdminMonthCalendar';
 import {Button, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, Input} from "@heroui/react";
+import {EventRecord} from "@/types/Event";
 
-interface EventDetailsPanelProps {
-    selectedEvent: Event;
+interface EventsDetailsPanelProps {
+    selectedEvents: EventRecord[];
     closePanel: () => void;
 }
 
-const EventDetailsPanel: React.FC<EventDetailsPanelProps> = ({ selectedEvent, closePanel }) => {
-    const [selectedKeys, setSelectedKeys] = React.useState<any>(new Set([selectedEvent.location.name]));
+const EventsDetailsPanel: React.FC<EventsDetailsPanelProps> = ({ selectedEvents, closePanel }) => {
+    const [selectedKeys, setSelectedKeys] = React.useState<any>(new Set([selectedEvents[0].name]));
 
     const selectedValue = React.useMemo(
         () => Array.from(selectedKeys).join(", "),
@@ -39,7 +39,7 @@ const EventDetailsPanel: React.FC<EventDetailsPanelProps> = ({ selectedEvent, cl
         )
     }
 
-    if (!selectedEvent) return null;
+    if (!selectedEvents) return null;
 
     return (
         <div className="fixed right-0 top-0 w-80 h-full bg-white shadow-lg p-5 z-50 border-l">
@@ -56,7 +56,7 @@ const EventDetailsPanel: React.FC<EventDetailsPanelProps> = ({ selectedEvent, cl
                 </p>
                 <p className="mb-2">
                     <div className='font-bold mb-2'>Nume rezervare:</div>
-                    <Input isReadOnly label='Nume' defaultValue={selectedEvent.reservationName}/>
+                    <Input isReadOnly label='Nume' defaultValue={selectedEvents[0].name}/>
                 </p>
                 <p className="mb-2">
                     <div className='font-bold mb-2'>Alte detalii</div>
@@ -69,4 +69,4 @@ const EventDetailsPanel: React.FC<EventDetailsPanelProps> = ({ selectedEvent, cl
     );
 };
 
-export default EventDetailsPanel;
+export default EventsDetailsPanel;

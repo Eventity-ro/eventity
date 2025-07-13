@@ -20,9 +20,10 @@ export default function AdminDashboard({adminId, adminServices}: AdminDashboardP
     const {isOpen, onOpen, onOpenChange} = useDisclosure();
 
     const { data: events, error, mutate } = useSWR<EventRecord[]>(
-        `/api/events?adminId=${adminId}`,
+        `/api/events?adminId=${adminId}&dashboardEvents=true`,
         fetcher
     );
+
     const handleAddEvent = async (newEventData: { name: string, eventDate: string, serviceId: number, type: string, attendance: number, deposit: number, details: string }) => {
         try {
             // Example payload; replace with real form data

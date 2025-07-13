@@ -6,6 +6,7 @@ export async function GET(request: Request) {
     try {
         const { searchParams } = new URL(request.url);
         const adminId = searchParams.get('adminId');
+        const dashboardEvents = searchParams.get('dashboardEvents');
 
         const result = await sql`
             SELECT
@@ -23,10 +24,14 @@ export async function GET(request: Request) {
             WHERE r.user_id = ${adminId}
             AND date >= CURRENT_DATE
             ORDER BY date ASC
-            LIMIT 3
         `;
 
-        return NextResponse.json(result.rows);
+        if (dashboardEvents) {
+            return NextResponse.json(result.rows.slice(0, 3));
+        }
+        else {
+            return NextResponse.json(result.rows);
+        }
     } catch (err) {
         console.error('Error fetching events by service:', err);
         return NextResponse.json(

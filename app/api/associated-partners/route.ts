@@ -14,8 +14,6 @@ export async function GET() {
         return NextResponse.json({ error: 'RestaurantId is required' }, { status: 400 });
     }
 
-    console.log(restaurantId);
-
     try {
         const result = await sql`
             SELECT p.*
@@ -24,11 +22,8 @@ export async function GET() {
             WHERE rp.restaurant_id = ${restaurantId}
         `;
 
-        console.log(result.rows)
-
         return NextResponse.json(result.rows);
     } catch (error) {
-        console.error('Error fetching associated partners:', error);
         return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
     }
 }
