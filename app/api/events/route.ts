@@ -19,15 +19,15 @@ export async function GET(request: Request) {
                 e.deposit,
                 e.details
             FROM event e
-            JOIN service s       ON e.service_id        = s.id
-            JOIN restaurant r  ON s.restaurant_id  = r.id
+            JOIN service s ON e.service_id = s.id
+            JOIN restaurant r ON s.restaurant_id = r.id
             WHERE r.user_id = ${adminId}
-            AND date >= CURRENT_DATE
             ORDER BY date ASC
         `;
 
         if (dashboardEvents) {
-            return NextResponse.json(result.rows.slice(0, 3));
+            const results = result.rows.filter(event => event.date >= new Date())
+            return NextResponse.json(results.slice(0, 3));
         }
         else {
             return NextResponse.json(result.rows);
@@ -45,7 +45,6 @@ export async function POST(request: Request) {
     try {
         const data: EventRecord = await request.json();
 
-        // We write out every column; if an optional field is undefined, we pass null
         await sql`
             INSERT INTO event (
                 name,
@@ -58,7 +57,7 @@ export async function POST(request: Request) {
             ) VALUES (
                 ${data.name},
                 ${data.date},
-                ${data.serviceId},
+                ${data.service_id},
                 ${data.type},
                 ${data.attendance ?? null},
                 ${data.deposit  ?? null},

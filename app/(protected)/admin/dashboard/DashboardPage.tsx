@@ -26,11 +26,10 @@ export default function AdminDashboard({adminId, adminServices}: AdminDashboardP
 
     const handleAddEvent = async (newEventData: { name: string, eventDate: string, serviceId: number, type: string, attendance: number, deposit: number, details: string }) => {
         try {
-            // Example payload; replace with real form data
-            const newEvent = {
+            const newEvent: Partial<EventRecord> = {
                 name: newEventData.name,
                 date: newEventData.eventDate,
-                serviceId: 1,
+                serviceId: newEventData.serviceId,
                 type: newEventData.type,
                 attendance: newEventData.attendance,
                 deposit: newEventData.deposit,

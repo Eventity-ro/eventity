@@ -51,7 +51,8 @@ const NewEventModal: React.FC<FiltersModalProps> = ({ isOpen, onOpenChange, onSu
 
     const handleServiceChange = useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
         handleServiceNameChange(e.target.value);
-        handleServiceIdChange(Number(e.target.id));
+        const selectedService = adminServices.find(service => service.name == e.target.value)
+        if (selectedService) handleServiceIdChange(selectedService.id);
     }, []);
 
     if (!isOpen) return null;

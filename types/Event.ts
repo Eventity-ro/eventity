@@ -2,7 +2,7 @@ export interface EventRecord {
     id: string;
     name: string;
     date: string;
-    serviceId: number;
+    service_id: number;
     type: string;
     attendance?: number;
     deposit?: number;

@@ -35,7 +35,7 @@ const MonthCalendar: React.FC<CalendarProps> = ({calendarMonth, events, onEventC
             return (
                 <div
                     onClick={() => onEventClick(dayEvents)}
-                    className={`absolute left-2 -right-5 h-5 px-3 py-0.5 z-10 cursor-pointer`}
+                    className={`absolute left-2 -right-5 h-5 px-3 py-0.5 z-10`}
                     style={{
                         backgroundColor: 'blue',
                         borderRadius: '15px',
@@ -52,7 +52,7 @@ const MonthCalendar: React.FC<CalendarProps> = ({calendarMonth, events, onEventC
                 <div
                     key={index}
                     onClick={() => onEventClick(dayEvents)}
-                    className={`absolute left-2 -right-5 h-5 px-3 py-0.5 z-10 cursor-pointer`}
+                    className={`absolute left-2 -right-5 h-5 px-3 py-0.5 z-10`}
                     style={{
                         backgroundColor: 'blue',
                         borderRadius: '15px',
@@ -75,8 +75,11 @@ const MonthCalendar: React.FC<CalendarProps> = ({calendarMonth, events, onEventC
         return (
             <div
                 key={day.toString()}
-                className={`relative px-2 py-1 text-left border ${dayEvents.length > 0 && 'bg-[#D4D4D4]'}`}
+                className={`relative cursor-pointer px-2 py-1 text-left border ${dayEvents.length > 0 && 'bg-[#D4D4D4]'}`}
                 style={{height: '6.5rem'}}
+                onClick={() => {
+                    if (dayEvents.length == 0) onEventClick([])}
+                }
             >
                 {/* Only show the day number if it’s in this month */}
                 {!isOtherMonth && (

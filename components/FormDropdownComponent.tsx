@@ -4,7 +4,7 @@ import React, {ChangeEvent} from 'react';
 
 interface FormDropdownProps {
     options: any[];
-    value: string;
+    value?: string;
     onChange: (e: ChangeEvent<HTMLSelectElement>) => void;
 }
 
